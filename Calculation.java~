@@ -1,0 +1,6 @@
+public class Calculation extends Object
+{
+private  GUI gui;
+
+private double time;
+}
