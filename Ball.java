@@ -16,12 +16,7 @@ public class Ball extends JComponent
     g.setColor(Color.BLACK);
     g.fillOval(19,19,93,93);
     g.setColor(Color.YELLOW);
-    g.fillOval(20,20,90,90);
-    
-    
-
+    g.fillOval(20,20,90,90); 
   }
-  
-  
 }      
 
