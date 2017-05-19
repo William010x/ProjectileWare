@@ -33,8 +33,33 @@ public void setGUI(GUI theView)
 {
   this.view=theView;
 }
+
 ////////////////////////////////////
-public double getVar()
+public double getTime()
+{
+}
+
+public double getVelocity1()
+{
+}
+
+public double getVelocity2()
+{
+}
+
+public double getDisplacementX()
+{
+}
+
+public double getDisplacementY()
+{
+}
+
+public double getAngle1()
+{
+}
+
+public double getAngle2()
 {
 }
 
@@ -44,7 +69,31 @@ public void calculate()
 }
 
 ///////////////////////////////////
-public void setVar()
+public void setTime()
+{
+}
+
+public void setVelocity1()
+{
+}
+
+public void setVelocity2()
+{
+}
+
+public void setDisplacementX()
+{
+}
+
+public void setDisplacementY()
+{
+}
+
+public void setAngle1()
+{
+}
+
+public void setAngle2()
 {
 }
 
