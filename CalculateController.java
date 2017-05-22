@@ -51,9 +51,40 @@ public class CalculateController implements ActionListener
    */
   public void actionPerformed(ActionEvent e)
   {
-    if (time.getText().equals(""))
+    //Set time
+    if (!time.getText().equals(""))
     {
-      timeB;
+      model.setTime(time.getText());
+    }
+    //Set velocity 1
+    if (!velocity1.getText().equals(""))
+    {
+      model.setVelocity1(velocity1.getText());
+    }
+    //Set velocity 2
+    if (!velocity2.getText().equals(""))
+    {
+      model.setVelocity2(velocity2.getText());
+    }
+    //Set angle 1
+    if (!angle1.getText().equals(""))
+    {
+      model.set(angle1.getText());
+    }
+    //Set angle 2
+    if (!angle2.getText().equals(""))
+    {
+      model.setAngle2(angle2.getText());
+    }
+    //Set displacementX
+    if (!displacementX.getText().equals(""))
+    {
+      model.setDisplacementX(displacementX.getText());
+    }
+    //Set displacementY
+    if (!displacementY.getText().equals(""))
+    {
+      model.setDisplacementY(displacementY.getText());
     }
   }
 }
