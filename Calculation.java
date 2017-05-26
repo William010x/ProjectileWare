@@ -37,30 +37,37 @@ public void setGUI(GUI theView)
 ////////////////////////////////////
 public double getTime()
 {
+  return this.time;
 }
 
 public double getVelocity1()
 {
+  return this.velocity1;
 }
 
 public double getVelocity2()
 {
+  return this.velocity2;
 }
 
 public double getDisplacementX()
 {
+  return this.displacementX;
 }
 
 public double getDisplacementY()
 {
+  return this.displacementY;
 }
 
 public double getAngle1()
 {
+  return this.angle1;
 }
 
 public double getAngle2()
 {
+  return this.angle2;
 }
 
 ///////////////////////////////////
@@ -69,32 +76,39 @@ public void calculate()
 }
 
 ///////////////////////////////////
-public void setTime()
+public void setTime(double aTime)
 {
+  this.time = aTime;
 }
 
-public void setVelocity1()
+public void setVelocity1(double aVelocity)
 {
+  this.velocity1 = aVelocity;
 }
 
-public void setVelocity2()
+public void setVelocity2(double aVelocity)
 {
+  this.velocity2 = aVelocity;
 }
 
-public void setDisplacementX()
+public void setDisplacementX(double aDisplacementX)
 {
+  this.displacementX = aDisplacementX;
 }
 
-public void setDisplacementY()
+public void setDisplacementY(double aDisplacementY)
 {
+  this.displacementY = aDisplacementY;
 }
 
-public void setAngle1()
+public void setAngle1(double anAngle)
 {
+  this.angle1 = anAngle;
 }
 
-public void setAngle2()
+public void setAngle2(double anAngle)
 {
+  this.angle2 = anAngle;
 }
 
 ///////////////////////////////////
