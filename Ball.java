@@ -1,16 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 
-/** Ball Class
+/** 
+  * Ball Class
   * Creates component that looks like a ball
   * @since 5/29/17
   * @author William San
   */
 public class Ball extends JComponent
 {
-  /**
-    * Default Constructor
-    */
+  /** Default Constructor */
   public Ball ()
   {
     super ();
