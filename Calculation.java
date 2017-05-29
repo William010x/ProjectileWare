@@ -25,6 +25,8 @@ private  GUI view;
 private double time;
 private double velocity1;
 private double velocity2;
+private double velocityY1;
+private double velocityY2;
 private double displacementX;
 private double displacementY;
 private double angle1;
@@ -138,11 +140,24 @@ public void calcAng()
 ///////////////////////////////////
 public void calcV1X()
 {
+if(displacementX!="" && time!="")
+
+{
+velocity1 = displacmentX/time;
+}
+
 }
 
 ///////////////////////////////////
 public void calcV2X()
 {
+
+if(displacementX!="" && time!="")
+
+{
+velocity1 = displacmentX/time;
+}
+
 }
 
 ///////////////////////////////////
@@ -158,6 +173,12 @@ public void calcV2Y()
 ///////////////////////////////////
 public void calcTime()
 {
+if (displacementX != "" && Velocity1 !="")
+
+{
+time= Velocity1/displacementX;
+}
+
 }
 
 ///////////////////////////////////
