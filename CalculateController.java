@@ -11,13 +11,13 @@ import java.awt.event.*;
 public class CalculateController implements ActionListener
 {
   private Calculation model;         //The Model used for numbers and calculations
-  private JTextField time;           //The time of the projectile motion
-  private JTextField velocity1;      //The inital speed of the projectile
-  private JTextField velocity2;      //The final speed of the projectile
-  private JTextField angle1;         //The inital velocity's angle above or below the horizontal (degrees) (above +, below -)
-  private JTextField angle2;         //The final velocity's angle above or below the horizontal (degrees) (above +, below -)
-  private JTextField displacementX;  //The horizontal displacement of the projectile
-  private JTextField displacementY;  //The vertical displacement of the projectile
+  private JTextField time;           //The time of the projectile motion (s)
+  private JTextField velocity1;      //The inital speed of the projectile (m/s)
+  private JTextField velocity2;      //The final speed of the projectile (m/s)
+  private JTextField angle1;         //The inital velocity's angle above or below the horizontal (above +, below -) (degrees)
+  private JTextField angle2;         //The final velocity's angle above or below the horizontal (above +, below -) (degrees)
+  private JTextField displacementX;  //The horizontal displacement of the projectile (m)
+  private JTextField displacementY;  //The vertical displacement of the projectile (m)
   
   private boolean timeB;
   private boolean velocity1B;
@@ -31,7 +31,13 @@ public class CalculateController implements ActionListener
    * Default constructor
    * Links the component to the Model
    * @param aModel The Model for numbers and calculations
-   * @param button The component being interacted with
+   * @param t Time of projectile motion (s)
+   * @param v1 Initial velocity (m/s)
+   * @param v2 Final velocity (m/s)
+   * @param theta1 Iniital velocity's angle (above horizontal +, below horizontal -) (degrees)
+   * @param theta2 Final velocity's angle (above horizontal +, below horizontal -) (degrees)
+   * @param dX Horizontal displacement of the projectile (m)
+   * @param dY Vertical displacement of the projectile (m)
    */ 
   public CalculateController(Calculation model, JTextField t, JTextField v1, JTextField v2, JTextField theta1, JTextField theta2, JTextField dX, JTextField dY)
   {
