@@ -1,4 +1,3 @@
-//package SwingExample;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -19,13 +18,13 @@ public class CalculateController implements ActionListener
   private JTextField displacementX;  //The horizontal displacement of the projectile (m)
   private JTextField displacementY;  //The vertical displacement of the projectile (m)
   
-  private boolean timeB;
-  private boolean velocity1B;
-  private boolean velocity2B;
-  private boolean angle1B;
-  private boolean angle2B;
-  private boolean displacementXB;
-  private boolean displacementYB;
+  //private boolean timeB;
+  //private boolean velocity1B;
+  //private boolean velocity2B;
+  //private boolean angle1B;
+  //private boolean angle2B;
+  //private boolean displacementXB;
+  //private boolean displacementYB;
   
   /** 
    * Default constructor
