@@ -3,6 +3,20 @@
   * @since 5/19/2017
   * @author  Nicolas Chatziargiriou
   */
+////////////////////////////////////////
+
+// Calculation LookUp Table:
+
+//  Aav = (V2-V1)ΔD
+//  V2 = V1+(A)ΔT
+//  ΔD = ((V1+V2)/2)ΔT
+//  ΔD = V2(ΔT)-1/2(A)ΔT^2
+//  V2^2 = V1^2 + 2(A)ΔD
+//  ΔD = V1(ΔT)+1/2(A)ΔT^2
+
+////////////////////////////////////////
+
+
 
 public class Calculation extends Object
 {
