@@ -37,14 +37,21 @@ public class Calculation extends Object
 //private boolean angle1B;
 //private boolean angle2B;
 
+/**
+  * Default Constructor
+  */
 public Calculation()
 {
   super();
 }
 
-public void setGUI(GUI aView)
+/**
+  * Sets view for the program
+  * @param currentGUI The view used to display the program
+  */ 
+public void setGUI(GUI currentView)
 {
-  this.view = aView;
+  this.view = currentView;
 }
 
 /** 
@@ -58,12 +65,12 @@ public double getTime()
 
 
 /** 
-  * Get the initail velocity
+  * Get the initial velocity
   * @return The inital speed of the projectile (m/s)
   */
 public double getVelocity1()
 {
-  return this.velocity1;
+  return (this.velocity1);
 }
 
 /** 
@@ -72,7 +79,7 @@ public double getVelocity1()
   */
 public double getVelocity2()
 {
-  return this.velocity2;
+  return (this.velocity2);
 }
 
 /** 
@@ -81,7 +88,7 @@ public double getVelocity2()
   */
 public double getDisplacementX()
 {
-  return this.displacementX;
+  return (this.displacementX);
 }
 
 /** 
@@ -90,7 +97,7 @@ public double getDisplacementX()
   */
 public double getDisplacementY()
 {
-  return this.displacementY;
+  return (this.displacementY);
 }
 
 /** 
@@ -99,7 +106,7 @@ public double getDisplacementY()
   */
 public double getAngle1()
 {
-  return this.angle1;
+  return (this.angle1);
 }
 
 /** 
@@ -108,54 +115,76 @@ public double getAngle1()
   */
 public double getAngle2()
 {
-  return this.angle2;
+  return (this.angle2);
+}
+
+/** 
+  * Sets the time
+  * @param aTime Time of projectile motion
+  */ 
+public void setTime(double aTime)
+{
+  this.time = aTime;
+}
+
+/** 
+  * Set the initial velocity
+  * @return The inital speed of the projectile (m/s)
+  */
+public void setVelocity1(double aVelocity)
+{
+  this.velocity1 = aVelocity;
+}
+
+/** 
+  * Set the final velocity
+  * @return The final speed of the projectile (m/s)
+  */
+public void setVelocity2(double aVelocity)
+{
+  this.velocity2 = aVelocity;
+}
+
+/** 
+  * Set the displacement in the X direction
+  * @return The horizontal displacement of the projectile (m)
+  */
+public void setDisplacementX(double aDisplacementX)
+{
+  this.displacementX = aDisplacementX;
+}
+
+/** 
+  * Set the displacement in the Y direction
+  * @return The vertical displacement of the projectile (m)
+  */
+public void setDisplacementY(double aDisplacementY)
+{
+  this.displacementY = aDisplacementY;
+}
+
+/** 
+  * Set the initial velocity's angle
+  * @return The initial velocity's angle above or below the horizontal (above +, below -) (degrees)
+  */
+public void setAngle1(double anAngle)
+{
+  this.angle1 = anAngle;
+}
+
+/** 
+  * Set the final velocity's angle
+  * @return The final velocity's angle above or below the horizontal (above +, below -) (degrees)
+  */
+public void setAngle2(double anAngle)
+{
+  this.angle2 = anAngle;
 }
 
 /**
   * Determines which operation and calculation to perform based on given variables
   */
 public void calculate()
-{
-}
-
-///////////////////////////////////
-public void setTime(double aTime)
-{
-  this.time = aTime;
-}
-
-public void setVelocity1(double aVelocity)
-{
-  this.velocity1 = aVelocity;
-}
-
-public void setVelocity2(double aVelocity)
-{
-  this.velocity2 = aVelocity;
-}
-
-public void setDisplacementX(double aDisplacementX)
-{
-  this.displacementX = aDisplacementX;
-}
-
-public void setDisplacementY(double aDisplacementY)
-{
-  this.displacementY = aDisplacementY;
-}
-
-public void setAngle1(double anAngle)
-{
-  this.angle1 = anAngle;
-}
-
-public void setAngle2(double anAngle)
-{
-  this.angle2 = anAngle;
-}
-
-///////////////////////////////////
-public void calcAng()
 {
 }
 
