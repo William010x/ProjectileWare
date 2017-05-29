@@ -1,8 +1,3 @@
-/**Calculation class
-  * Performs calculations
-  * @since 5/19/2017
-  * @author  Nicolas Chatziargiriou
-  */
 ////////////////////////////////////////
 
 // Calculation LookUp Table:
@@ -16,21 +11,23 @@
 
 ////////////////////////////////////////
 
-
-
+/**
+  * Calculation class
+  * Model that performs calculations
+  * @since 5/19/2017
+  * @author Nicolas Chatziargiriou
+  */
 public class Calculation extends Object
 {
-private  GUI view;
+  private GUI view;              //The view for the simulation
 
-private double time;
-private double velocity1;
-private double velocity2;
-private double velocityY1;
-private double velocityY2;
-private double displacementX;
-private double displacementY;
-private double angle1;
-private double angle2;
+  private double time;           //The time of the projectile motion (s)
+  private double velocity1;      //The inital speed of the projectile (m/s)
+  private double velocity2;      //The final speed of the projectile (m/s)
+  private double displacementX;  //The horizontal displacement of the projectile (m)
+  private double displacementY;  //The vertical displacement of the projectile (m)
+  private double angle1;         //The inital velocity's angle above or below the horizontal (above +, below -) (degrees)
+  private double angle2;         //The final velocity's angle above or below the horizontal (above +, below -) (degrees)
 
 //private boolean timeB;
 //private boolean velocity1B;
@@ -45,48 +42,78 @@ public Calculation()
   super();
 }
 
-public void setGUI(GUI theView)
+public void setGUI(GUI aView)
 {
-  this.view=theView;
+  this.view = aView;
 }
 
-////////////////////////////////////
+/** 
+  * Get the time
+  * @return Time of projectile motion
+  */
 public double getTime()
 {
-  return this.time;
+  return (this.time);
 }
 
+
+/** 
+  * Get the initail velocity
+  * @return The inital speed of the projectile (m/s)
+  */
 public double getVelocity1()
 {
   return this.velocity1;
 }
 
+/** 
+  * Get the final velocity
+  * @return The final speed of the projectile (m/s)
+  */
 public double getVelocity2()
 {
   return this.velocity2;
 }
 
+/** 
+  * Get the displacement in the X direction
+  * @return The horizontal displacement of the projectile (m)
+  */
 public double getDisplacementX()
 {
   return this.displacementX;
 }
 
+/** 
+  * Get the displacement in the Y direction
+  * @return The vertical displacement of the projectile (m)
+  */
 public double getDisplacementY()
 {
   return this.displacementY;
 }
 
+/** 
+  * Get the inital velocity's angle
+  * @return The inital velocity's angle above or below the horizontal (above +, below -) (degrees)
+  */
 public double getAngle1()
 {
   return this.angle1;
 }
 
+/** 
+  * Get the final velocity's angle
+  * @return The final velocity's angle above or below the horizontal (above +, below -) (degrees)
+  */
 public double getAngle2()
 {
   return this.angle2;
 }
 
-///////////////////////////////////
+/**
+  * Determines which operation and calculation to perform based on given variables
+  */
 public void calculate()
 {
 }
@@ -128,11 +155,6 @@ public void setAngle2(double anAngle)
 }
 
 ///////////////////////////////////
-public void updateView()
-{
-}
-
-///////////////////////////////////
 public void calcAng()
 {
 }
@@ -140,24 +162,11 @@ public void calcAng()
 ///////////////////////////////////
 public void calcV1X()
 {
-if(displacementX!="" && time!="")
-
-{
-velocity1 = displacmentX/time;
-}
-
 }
 
 ///////////////////////////////////
 public void calcV2X()
 {
-
-if(displacementX!="" && time!="")
-
-{
-velocity1 = displacmentX/time;
-}
-
 }
 
 ///////////////////////////////////
@@ -173,12 +182,6 @@ public void calcV2Y()
 ///////////////////////////////////
 public void calcTime()
 {
-if (displacementX != "" && Velocity1 !="")
-
-{
-time= Velocity1/displacementX;
-}
-
 }
 
 ///////////////////////////////////
@@ -191,6 +194,10 @@ public void calcDY()
 {
 }
 
-
-
+/** 
+  * Updates the view in the GUI
+  */
+public void updateView()
+{
+  view.update();
 }
