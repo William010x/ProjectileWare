@@ -59,37 +59,55 @@ public class CalculateController implements ActionListener
     //Set time
     if (!time.getText().equals(""))
     {
-      model.setTime(Double.parseDouble(time.getText()));
+      if (validate(time))
+        model.setTime(Double.parseDouble(time.getText()));
     }
     //Set velocity 1
     if (!velocity1.getText().equals(""))
     {
-      model.setVelocity1(Double.parseDouble(velocity1.getText()));
+      if (validate(velocity1))
+        model.setVelocity1(Double.parseDouble(velocity1.getText()));
     }
     //Set velocity 2
     if (!velocity2.getText().equals(""))
     {
-      model.setVelocity2(Double.parseDouble(velocity2.getText()));
+      if (validate(velocity2))
+        model.setVelocity2(Double.parseDouble(velocity2.getText()));
     }
     //Set angle 1
     if (!angle1.getText().equals(""))
     {
-      model.setAngle1(Double.parseDouble(angle1.getText()));
+      if (validate(angle1))
+        model.setAngle1(Double.parseDouble(angle1.getText()));
     }
     //Set angle 2
     if (!angle2.getText().equals(""))
     {
-      model.setAngle2(Double.parseDouble(angle2.getText()));
+      if (validate(angle2))
+        model.setAngle2(Double.parseDouble(angle2.getText()));
     }
     //Set displacementX
     if (!displacementX.getText().equals(""))
     {
-      model.setDisplacementX(Double.parseDouble(displacementX.getText()));
+      if (validate(displacementX))
+        model.setDisplacementX(Double.parseDouble(displacementX.getText()));
     }
     //Set displacementY
     if (!displacementY.getText().equals(""))
     {
-      model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+      if (validate(displacementY))
+        model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+    }
+  }
+  
+  private boolean validate(JTextField input)
+  {
+    try{
+      Double.parseDouble(input.getText());
+      return true;
+    } catch (NumberFormatException e)
+    {
+      return false;
     }
   }
 }
