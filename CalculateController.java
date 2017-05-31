@@ -38,10 +38,10 @@ public class CalculateController implements ActionListener
    * @param dX Horizontal displacement of the projectile (m)
    * @param dY Vertical displacement of the projectile (m)
    */ 
-  public CalculateController(Calculation model, JTextField t, JTextField v1, JTextField v2, JTextField theta1, JTextField theta2, JTextField dX, JTextField dY)
+  public CalculateController(Calculation aModel, JTextField t, JTextField v1, JTextField v2, JTextField theta1, JTextField theta2, JTextField dX, JTextField dY)
   {
     this.model = aModel;
-    this.time = aTime;
+    this.time = t;
     this.velocity1 = v1;
     this.velocity2 = v2;
     this.angle1 = theta1;
@@ -59,37 +59,37 @@ public class CalculateController implements ActionListener
     //Set time
     if (!time.getText().equals(""))
     {
-      model.setTime(time.getText());
+      model.setTime(Double.parseDouble(time.getText()));
     }
     //Set velocity 1
     if (!velocity1.getText().equals(""))
     {
-      model.setVelocity1(velocity1.getText());
+      model.setVelocity1(Double.parseDouble(velocity1.getText()));
     }
     //Set velocity 2
     if (!velocity2.getText().equals(""))
     {
-      model.setVelocity2(velocity2.getText());
+      model.setVelocity2(Double.parseDouble(velocity2.getText()));
     }
     //Set angle 1
     if (!angle1.getText().equals(""))
     {
-      model.set(angle1.getText());
+      model.setAngle1(Double.parseDouble(angle1.getText()));
     }
     //Set angle 2
     if (!angle2.getText().equals(""))
     {
-      model.setAngle2(angle2.getText());
+      model.setAngle2(Double.parseDouble(angle2.getText()));
     }
     //Set displacementX
     if (!displacementX.getText().equals(""))
     {
-      model.setDisplacementX(displacementX.getText());
+      model.setDisplacementX(Double.parseDouble(displacementX.getText()));
     }
     //Set displacementY
     if (!displacementY.getText().equals(""))
     {
-      model.setDisplacementY(displacementY.getText());
+      model.setDisplacementY(Double.parseDouble(displacementY.getText()));
     }
   }
 }

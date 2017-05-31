@@ -6,7 +6,7 @@ import java.awt.*;
   * @since 5/18/2017 */
 public class GUI extends JPanel
 {
-  //Calculation model;
+  Calculation model;
   
   JTextField velocity1;       //display/entry for initial velocity
   JTextField velocity2;       //display/entry for final velocity
@@ -17,18 +17,18 @@ public class GUI extends JPanel
   
   JButton start;              //the start button
   JButton calculate;          //the calculate button
-  
+  JButton reset;              //the reset button
   //Animation screen;           //the animation of the problem
   JPanel input;               //panel containing input fields
   JPanel buttonPanel;         //panel containing the buttons
   
   /* Constructor
-   * @param calculation     The calculation model */
-  public GUI()
+   * @param aModel    The calculation model */
+  public GUI(Calculation aModel)
   {
     super();
-    //this.model = calculation;
-    //this.model.setGUI(this);
+    this.model = aModel;
+    this.model.setGUI(this);
     //this.screen = aScreen;
     this.layoutView();
     this.registerControllers();
@@ -51,6 +51,7 @@ public class GUI extends JPanel
     
     start = new JButton("Start");
     calculate = new JButton("Calculate");
+    reset = new JButton("Reset");
     input = new JPanel();
     buttonPanel = new JPanel();
     
@@ -88,7 +89,7 @@ public class GUI extends JPanel
     input.add(displacementY);
     
     buttonPanel.add(start);
-    buttonPanel.add(blank);
+    buttonPanel.add(reset);
     buttonPanel.add(calculate);
     
     this.add(filler, BorderLayout.NORTH);
