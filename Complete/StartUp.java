@@ -9,8 +9,8 @@ import javax.swing.*;
 public class StartUp
 {
   //Instance Variables
-static Calculation model = new Calculation();  //The simulator model for calculations
-  static GUI view = new GUI(model);            //The simulator view for display
+  static Calculation model = new Calculation();  //The simulator model for calculations
+  static GUI view = new GUI(model);              //The simulator view for display
   
   /** 
    * Main method
