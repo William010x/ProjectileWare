@@ -202,4 +202,7 @@ public void updateView()
 {
   view.update();
 }
+public void reset()
+{
+}
 }
