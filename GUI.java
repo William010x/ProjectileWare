@@ -3,7 +3,7 @@ import java.awt.*;
 
 /** GUI Class
   * @author Tu Tran
-  * @since 5/18/2017 */
+  * @since 6/5/2017 */
 public class GUI extends JPanel
 {
   Calculation model;
@@ -121,12 +121,12 @@ public class GUI extends JPanel
   /* Updates the animation and text fields after calculations */
   public void update()
   {
-    this.velocity1.setText(this.model.getVelocity1());
-    this.velocity2.setText(this.model.getVelocity2());
-    this.displacementX.setText(this.model.getDisplacementX());
-    this.displacementY.setText(this.model.getDisplacementY());
-    this.time.setText(this.model.getTime());
-    this.angle.setText(this.model.getAngle());
+    this.velocity1.setText(Double.toString(this.model.getVelocity1()));
+    this.velocity2.setText(Double.toString(this.model.getVelocity2()));
+    this.displacementX.setText(Double.toString(this.model.getDisplacementX()));
+    this.displacementY.setText(Double.toString(this.model.getDisplacementY()));
+    this.time.setText(Double.toString(this.model.getTime()));
+    this.angle.setText(Double.toString(this.model.getAngle()));
   }
   
   /* Resets the values of the textfields */
