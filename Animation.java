@@ -1,7 +1,5 @@
 /** To do:
- * Implement calculation class methods to get values
  * Scale drawing in event that it goes beyond borders
- * Testing of class
  * 
  * Possibly:
  * draw arc showing complete path of projectile
@@ -12,7 +10,7 @@ import javax.swing.*;
 
 /** Animation
   * @author Tu Tran
-  * @since 6/3/2017 */
+  * @since 6/5/2017 */
 public class Animation extends JComponent
 {
   //private Calculation model;
@@ -21,7 +19,7 @@ public class Animation extends JComponent
   
   /** Default Constructor
    */
-  public Animation(/*Calculation aModel*/)
+  public Animation(Calculation aModel)
   {
     super ();
     this.setPreferredSize(new Dimension(500,300));
@@ -43,6 +41,7 @@ public class Animation extends JComponent
   /** Calls the moveVertical and moveHorizontal methods */
   public void start()
   {
+    //Moves object in 0.1 sec increments until the maximum time value is reached
     for (double t = 0; t < this.model.getTime(); t += 0.1)
     {
       moveHorizontal(t);
@@ -61,14 +60,14 @@ public class Animation extends JComponent
     * @param       the current time at object's position */
   private void moveHorizontal(double time)
   {
-    this.positionY = (int)((Math.sin(this.model.getVelocity()) * time) + (0.5 * -9.81 * Math.pow(time, 2)));
+    this.positionY = (int)((this.model.getVelocity1() * Math.sin(this.model.getAngle()) * time) + (0.5 * -9.81 * Math.pow(time, 2)));
   }
   
   /** Calculates the object's new vertical position
     * @param       the current time at object's position */
   private void moveVertical(double time)
   {
-    this.positionX = (int)(Math.cos(this.model.getVelocity()) * time);
+    this.positionX = (int)(this.model.getVelocity1() * Math.cos(this.model.getAngle()) * time);
   }
   
   /** Clears the animation screen */
