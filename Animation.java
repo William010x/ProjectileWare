@@ -41,7 +41,7 @@ public class Animation extends JComponent
   }
   
   /** Calls the moveVertical and moveHorizontal methods */
-  private void moveObject()
+  public void start()
   {
     for (double t = 0; t < this.model.getTime(); t += 0.1)
     {
