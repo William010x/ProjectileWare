@@ -40,6 +40,12 @@ public class Calculation extends Object
 public Calculation()
 {
   super();
+  this.time = -404;
+  this.velocity1 = -404;
+  this.displacementX = -404;
+  this.displacementY = -404;
+  this.angle1 = -404;
+  this.angle2 = -404;
 }
 
 public void setGUI(GUI aView)
@@ -58,7 +64,7 @@ public double getTime()
 
 
 /** 
-  * Get the initail velocity
+  * Get the initial velocity
   * @return The inital speed of the projectile (meters/seconds)
   */
 public double getVelocity1()
