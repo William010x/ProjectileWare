@@ -10,6 +10,7 @@ import java.awt.event.*;
 public class CalculateController implements ActionListener
 {
   private Calculation model;         //The Model used for numbers and calculations
+  private GUI view;                  //The view containing the animation and textfields
   private JTextField time;           //The time of the projectile motion (s)
   private JTextField velocity1;      //The inital speed of the projectile (m/s)
   private JTextField velocity2;      //The final speed of the projectile (m/s)
@@ -38,9 +39,10 @@ public class CalculateController implements ActionListener
    * @param dX Horizontal displacement of the projectile (m)
    * @param dY Vertical displacement of the projectile (m)
    */ 
-  public CalculateController(Calculation aModel, JTextField t, JTextField v1, JTextField v2, JTextField theta1, JTextField theta2, JTextField dX, JTextField dY)
+  public CalculateController(Calculation aModel, GUI aView, JTextField t, JTextField v1, JTextField v2, JTextField theta1, JTextField theta2, JTextField dX, JTextField dY)
   {
     this.model = aModel;
+    this.view = aView;
     this.time = t;
     this.velocity1 = v1;
     this.velocity2 = v2;
@@ -59,7 +61,7 @@ public class CalculateController implements ActionListener
     //Checks if button pressed was the "Start" button
     if ((JButton)e.getSource().getText().equals("Start"))
     {
-      this.model.runAnimation();
+      this.GUI.runAnimation();
     }
   
     //Else, calculates the empty text fields
