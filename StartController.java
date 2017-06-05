@@ -29,6 +29,6 @@ public class StartController implements ActionListener
    */
   public void actionPerformed(ActionEvent e)
   {
-    Animation.start(angle.getText(), displacementY.getText());
+    Animation.start();
   }
 }
