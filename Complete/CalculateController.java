@@ -5,7 +5,7 @@ import java.awt.event.*;
  * CalculateController Class
  * The controller for calculating all values (initial and final situation)
  * @author William San
- * @since 5/18/17
+ * @since 6/5/17
  */ 
 public class CalculateController implements ActionListener
 {
@@ -56,50 +56,61 @@ public class CalculateController implements ActionListener
    */
   public void actionPerformed(ActionEvent e)
   {
-    //Set time
-    if (!time.getText().equals(""))
+    //Checks if button pressed was the "Start" button
+    if ((JButton)e.getSource().getText().equals("Start"))
     {
-      if (validate(time))
-        model.setTime(Double.parseDouble(time.getText()));
+      this.model.runAnimation();
     }
-    //Set velocity 1
-    if (!velocity1.getText().equals(""))
+  
+    //Else, calculates the empty text fields
+    else
     {
-      if (validate(velocity1))
-        model.setVelocity1(Double.parseDouble(velocity1.getText()));
-    }
-    //Set velocity 2
-    if (!velocity2.getText().equals(""))
-    {
-      if (validate(velocity2))
-        model.setVelocity2(Double.parseDouble(velocity2.getText()));
-    }
-    //Set angle 1
-    if (!angle1.getText().equals(""))
-    {
-      if (validate(angle1))
-        model.setAngle1(Double.parseDouble(angle1.getText()));
-    }
-    //Set angle 2
-    if (!angle2.getText().equals(""))
-    {
-      if (validate(angle2))
-        model.setAngle2(Double.parseDouble(angle2.getText()));
-    }
-    //Set displacementX
-    if (!displacementX.getText().equals(""))
-    {
-      if (validate(displacementX))
-        model.setDisplacementX(Double.parseDouble(displacementX.getText()));
-    }
-    //Set displacementY
-    if (!displacementY.getText().equals(""))
-    {
-      if (validate(displacementY))
-        model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+      //Set time
+      if (!time.getText().equals(""))
+      {
+        if (validate(time))
+          model.setTime(Double.parseDouble(time.getText()));
+      }
+      //Set velocity 1
+      if (!velocity1.getText().equals(""))
+      {
+        if (validate(velocity1))
+          model.setVelocity1(Double.parseDouble(velocity1.getText()));
+      }
+      //Set velocity 2
+      if (!velocity2.getText().equals(""))
+      {
+        if (validate(velocity2))
+          model.setVelocity2(Double.parseDouble(velocity2.getText()));
+      }
+      //Set angle 1
+      if (!angle1.getText().equals(""))
+      {
+        if (validate(angle1))
+          model.setAngle1(Double.parseDouble(angle1.getText()));
+      }
+      //Set angle 2
+      if (!angle2.getText().equals(""))
+      {
+        if (validate(angle2))
+          model.setAngle2(Double.parseDouble(angle2.getText()));
+      }
+      //Set displacementX
+      if (!displacementX.getText().equals(""))
+      {
+        if (validate(displacementX))
+          model.setDisplacementX(Double.parseDouble(displacementX.getText()));
+      }
+      //Set displacementY
+      if (!displacementY.getText().equals(""))
+      {
+        if (validate(displacementY))
+          model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+      }
     }
   }
   
+  /* Data validation for textField inputs */
   private boolean validate(JTextField input)
   {
     try{
