@@ -13,7 +13,7 @@ import javax.swing.*;
   * @since 6/5/2017 */
 public class Animation extends JComponent
 {
-  //private Calculation model;
+  private Calculation model;
   private int positionX;
   private int positionY;
   
@@ -22,7 +22,7 @@ public class Animation extends JComponent
   public Animation(Calculation aModel)
   {
     super ();
-    this.setPreferredSize(new Dimension(500,300));
+    this.setPreferredSize(new Dimension(500,100));
     this.model = aModel;
   }
   
@@ -35,7 +35,7 @@ public class Animation extends JComponent
     super.paintComponent(g);
     
     g.setColor(Color.BLACK);
-    g.fillOval(0 + positionX, 150 + positionY, 5, 5);
+    g.fillOval(0 + positionX, 50 + positionY, 5, 5);
    }
   
   /** Calls the moveVertical and moveHorizontal methods */
@@ -60,14 +60,14 @@ public class Animation extends JComponent
     * @param       the current time at object's position */
   private void moveHorizontal(double time)
   {
-    this.positionY = (int)((this.model.getVelocity1() * Math.sin(this.model.getAngle()) * time) + (0.5 * -9.81 * Math.pow(time, 2)));
+    this.positionY = (int)((this.model.getVelocity1() * Math.sin(this.model.getAngle1()) * time) + (0.5 * -9.81 * Math.pow(time, 2)));
   }
   
   /** Calculates the object's new vertical position
     * @param       the current time at object's position */
   private void moveVertical(double time)
   {
-    this.positionX = (int)(this.model.getVelocity1() * Math.cos(this.model.getAngle()) * time);
+    this.positionX = (int)(this.model.getVelocity1() * Math.cos(this.model.getAngle1()) * time);
   }
   
   /** Clears the animation screen */
