@@ -30,13 +30,13 @@ public class Animation extends JComponent
    * @overrides paintComponent
    * @param g The graphics context where the component should be drawn
    */
-  public void paintComponent(Graphics g)
-  {
+  public void paintComponent(Graphics g){
+  
     super.paintComponent(g);
     
     g.setColor(Color.BLACK);
     g.fillOval(0 + positionX, 150 + positionY, 5, 5);
-  }
+   }
   
   /** Calls the moveVertical and moveHorizontal methods */
   public void start()
