@@ -130,7 +130,32 @@ public double getAngle2()
   */
 public void calculate()
 {
-  
+  //Check if enough info is given in x
+  if ((velocityXB && displacementXB) || (velocityXB && timeB) || (displacementXB && timeB)
+  {
+    xB = true;
+  }
+  //Check if enough info is given in y
+  else if ((velocity1YB && velocity2YB && displacementY) || (velocity2YB && displacementY && timeB))
+  {
+    yB = true;
+  }
+  else if (velocity1YB && displacementYB)
+  {
+    if (velocity1Y == 0)
+    {
+      time = Math.sqrt(2*displacementX);
+    }
+    else
+    {
+      time = (-velocity1Y+Math.sqrt((Math.pow(velocity1Y,2))-(4*(9.8/2)*(-displacementY))))/9.8;
+      time2 = (-velocity1Y-Math.sqrt((Math.pow(velocity1Y,2))-(4*(9.8/2)*(-displacementY))))/9.8;
+    }
+  }
+  else if (velocity2YB && displacementYB)
+  {
+    time = (-velocity1+Math.sqrt((Math.pow(b,2))-(4*a*c)))/(2*a);
+  }
 
   if (timeB == false)
   {
