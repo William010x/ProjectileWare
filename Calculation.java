@@ -27,13 +27,21 @@ public class Calculation extends Object
   private double displacementX;  //The horizontal displacement of the projectile (meters)
   private double displacementY;  //The vertical displacement of the projectile (meters)
   private double angle1;         //The inital velocity's angle above or below the horizontal (above +, below -) (degrees)
-  private double angle2;         //The final velocity's angle above or below the horizontal (above +, below -) (degrees)
+  private double angle2;         //The final velocity's angle above or below the horizontal (above +, below -) (degrees)'
+  private double velocity1Y;     //The y-component of projectile's initial speed (meters/second)
+  private double velocity1X;     //The x-component of projectile's initial speed (meters/second)
+  private double velocity2Y;     //The y-component of projectile's final speed (meters/second)
+  private double velocity2X;     //The x-component of projectile's final speed (meters/second)
+  
 
-//private boolean timeB;
-//private boolean velocity1B;
-//private boolean velocity2B;
-//private boolean displacementXB;
-//private boolean displacementYB;
+private boolean xB;
+private boolean yB;
+private boolean timeB;
+private boolean velocity1YB;
+private boolean velocity2YB;
+private boolean velocityXB;
+private boolean displacementXB;
+private boolean displacementYB;
 //private boolean angle1B;
 //private boolean angle2B;
 
@@ -69,7 +77,7 @@ public double getTime()
   */
 public double getVelocity1()
 {
-  return this.velocity1;
+  return (this.velocity1);
 }
 
 /** 
@@ -78,7 +86,7 @@ public double getVelocity1()
   */
 public double getVelocity2()
 {
-  return this.velocity2;
+  return (this.velocity2);
 }
 
 /** 
@@ -87,7 +95,7 @@ public double getVelocity2()
   */
 public double getDisplacementX()
 {
-  return this.displacementX;
+  return (this.displacementX);
 }
 
 /** 
@@ -105,7 +113,7 @@ public double getDisplacementY()
   */
 public double getAngle1()
 {
-  return this.angle1;
+  return (this.angle1);
 }
 
 /** 
@@ -114,7 +122,7 @@ public double getAngle1()
   */
 public double getAngle2()
 {
-  return this.angle2;
+  return (this.angle2);
 }
 
 /**
@@ -122,6 +130,13 @@ public double getAngle2()
   */
 public void calculate()
 {
+  
+
+  if (timeB == false)
+  {
+    calcTime();
+  }
+  else if (
 }
 
 ///////////////////////////////////
@@ -129,36 +144,53 @@ public void calculate()
 public void setTime(double aTime)
 {
   this.time = aTime;
+  timeB = true;
 }
 
 public void setVelocity1(double aVelocity)
 {
   this.velocity1 = aVelocity;
+  velocity1B = true;
 }
 
 public void setVelocity2(double aVelocity)
 {
   this.velocity2 = aVelocity;
+  velocity2B = true;
 }
 
 public void setDisplacementX(double aDisplacementX)
 {
   this.displacementX = aDisplacementX;
+  displacementXB = true;
 }
 
 public void setDisplacementY(double aDisplacementY)
 {
   this.displacementY = aDisplacementY;
+  displacementYB = true;
 }
 
 public void setAngle1(double anAngle)
 {
   this.angle1 = anAngle;
+  velocity1Y = velocity1*Math.sin(angle1);
+  velocity1X = velocity1*Math.cos(angle1);
+  velocity2X = velocity1X;
+  
+  velocity1YB = true;
+  velocityXB = true;
 }
 
 public void setAngle2(double anAngle)
 {
   this.angle2 = anAngle;
+  velocity2Y = velocity2*Math.sin(angle2);
+  velocity2X = velocity2*Math.cos(angle2);
+  velocity1X = velocity2X;
+  
+  velocity2YB = true;
+  velocityXB = true;
 }
 
 ///////////////////////////////////
@@ -186,13 +218,40 @@ public void calcV2Y()
 {
 }
 
-///////////////////////////////////
+
 public void calcTime()
 {
+  //Check if time can be calculated from x direction
+  if (velocityXB && displacementXB)
+  {
+    time = displacementX/velocity1X;
+  }
+  //Check if time can be calculated from y direction
+  else if (velocity1YB && velocity2YB)
+  {
+    //Absolute value? -ve acceleration
+    time = (velocity2-velocity1)/9.8;
+  }
+  else if (velocity1YB && displacementYB)
+  {
+    if (velocity1Y == 0)
+    {
+      time = Math.sqrt(2*displacementX);
+    }
+    else
+    {
+      time = (-velocity1Y+Math.sqrt((Math.pow(velocity1Y,2))-(4*(9.8/2)*(-displacementY))))/9.8;
+      time2 = (-velocity1Y-Math.sqrt((Math.pow(velocity1Y,2))-(4*(9.8/2)*(-displacementY))))/9.8;
+    }
+  }
+  else if (velocity2YB && displacementYB)
+  {
+    time = (-velocity1+Math.sqrt((Math.pow(b,2))-(4*a*c)))/(2*a);
+  }
 }
 
-///////////////////////////////////
-public void calcXD()
+
+public void calcDX()
 {
 }
 
@@ -208,6 +267,7 @@ public void updateView()
 {
   view.update();
 }
+
 public void reset()
 {
 }
