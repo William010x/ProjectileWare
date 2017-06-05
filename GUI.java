@@ -29,7 +29,7 @@ public class GUI extends JPanel
     super();
     this.model = aModel;
     this.model.setGUI(this);
-    //this.screen = aScreen;
+   
     this.layoutView();
     this.registerControllers();
     this.update();
@@ -107,5 +107,14 @@ public class GUI extends JPanel
   /* Updates the animation and text fields after calculations */
   public void update()
   {
+  }
+  public void reset()
+  {
+  velocity1.setText("") ;       
+  velocity2.setText("");       
+  angle.setText("");           
+  time.setText("");            
+  displacementX.setText("");   
+  displacementY.setText("");   
   }
 }
