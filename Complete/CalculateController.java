@@ -59,7 +59,7 @@ public class CalculateController implements ActionListener
   public void actionPerformed(ActionEvent e)
   {
     //Checks if button pressed was the "Start" button
-    if ((JButton)e.getSource().getText().equals("Start"))
+    if (((JButton)e.getSource()).getText().equals("Start"))
     {
       this.GUI.runAnimation();
     }
