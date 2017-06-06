@@ -40,7 +40,7 @@ public class GUI extends JPanel
   private void layoutView()
   {
     //Initializing components
-    JLabel blank = new JLabel();
+    JLabel separator = new JLabel();
     
     screen = new Animation(model);
     velocity1 = new JTextField(10);
@@ -80,7 +80,7 @@ public class GUI extends JPanel
     //Setting sizes
     start.setPreferredSize(new Dimension(100, 25));
     calculate.setPreferredSize(new Dimension(100, 25));
-    blank.setPreferredSize(new Dimension(100, 25));
+    separator.setPreferredSize(new Dimension(100, 25));
     
     //Adding components
     input.add(velocity1);
@@ -96,7 +96,7 @@ public class GUI extends JPanel
     buttonPanel.add(calculate);
     
     this.add(input, BorderLayout.WEST);
-    this.add(blank, BorderLayout.CENTER);
+    this.add(separator, BorderLayout.CENTER);
     this.add(buttonPanel, BorderLayout.EAST);
     this.add(screen, BorderLayout.NORTH);
   }
