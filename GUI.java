@@ -8,21 +8,21 @@ public class GUI extends JPanel
 {
   Calculation model;
   
-  JTextField velocity1;       //display/entry for initial velocity
-  JTextField velocity2;       //display/entry for final velocity
-  JTextField angle1;          //display/entry for initial angle
-  JTextField angle2;          //display/entry for impact angle
-  JTextField time;            //display/entry for time
-  JTextField displacementX;   //display/entry for final horizontal displacement
-  JTextField displacementY;   //display/entry for final vertical displacement
+  JTextField velocity1;                //display/entry for initial velocity
+  JTextField velocity2;                //display/entry for final velocity
+  JTextField angle1;                   //display/entry for initial angle
+  JTextField angle2;                   //display/entry for impact angle
+  JTextField time;                     //display/entry for time
+  JTextField displacementX;            //display/entry for final horizontal displacement
+  JTextField displacementY;            //display/entry for final vertical displacement
   
-  JButton start;              //the start button
-  JButton calculate;          //the calculate button
-  JButton reset;              //the reset button
-  Animation screen;           //the animation of the problem
-  JPanel input;               //panel containing input fields
-  JPanel buttonPanel;         //panel containing the buttons
- public static boolean blank = true;
+  JButton start;                       //the start button
+  JButton calculate;                   //the calculate button
+  JButton reset;                       //the reset button
+  Animation screen;                    //the animation of the problem
+  JPanel input;                        //panel containing input fields
+  JPanel buttonPanel;                  //panel containing the buttons
+  public static boolean blank = true;  //variable for setting textfields to blank
   
   /* Constructor
    * @param aModel    The calculation model */
@@ -122,6 +122,7 @@ public class GUI extends JPanel
   /* Updates the animation and text fields after calculations */
   public void update()
   {
+    //Setting textfields to blank on startup or reset
     if (blank)
     {
       this.velocity1.setText("");
@@ -134,6 +135,7 @@ public class GUI extends JPanel
       blank = false;
     }
     
+    //Setting textfields to values after calculating them
     else
     {
       this.velocity1.setText(Double.toString(this.model.getVelocity1()));
