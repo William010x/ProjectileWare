@@ -15,8 +15,6 @@ public class Calculation extends Object
 {
   private GUI view;               //The view for the simulation
   
-  private boolean complete;       //Determines if all calculations are complete/values are found
-
   private double time;            //The time of the projectile motion (seconds)
   private double velocity1;       //The inital speed of the projectile (meters/second)
   private double velocity2;       //The final speed of the projectile (meters/second)
@@ -29,14 +27,15 @@ public class Calculation extends Object
   private double velocity2Y;      //The y-component of projectile's final speed (meters/second)
   private double velocity2X;      //The x-component of projectile's final speed (meters/second)
   
-  private boolean xB;             //Determines if enough values are given in x direction to perform calculations
-  private boolean yB;             //Determines if enough values are given in y direction to perform calculations
-  private boolean timeB;          //Determines if time is given by user
-  private boolean velocity1B;     //Determines if initial velocity is given by user
-  private boolean velocity2B;     //Determines if final velocity is given by user
-  private boolean velocityXB;     //Determines if any velocity is given by user (v1X = v2X)
-  private boolean displacementXB; //Determines if displacement in the x direction is given by user
-  private boolean displacementYB; //Determines if displacement in the y direction is given by user
+  private boolean missingX;       //Determines if there are still any x values to calculate
+  private boolean missingY;       //Determines if there are still any y values to calculate
+  private boolean timeB;          //Determines if time is given
+  private boolean velocity1B;     //Determines if initial velocity is given
+  private boolean velocity1YB;    //Determines if initial velocity is given
+  private boolean velocity2B;     //Determines if final velocity is given
+  private boolean velocityXB;     //Determines if any velocity is given (v1X = v2X)
+  private boolean displacementXB; //Determines if displacement in the x direction is given
+  private boolean displacementYB; //Determines if displacement in the y direction is given
 
 /** Default Constructor */
 public Calculation()
@@ -48,6 +47,9 @@ public Calculation()
   this.displacementY = -404;
   this.angle1 = -404;
   this.angle2 = -404;
+  
+  this.missingX = true;
+  this.missingY = true;
 }
 
 /** Sets view for the calculations */
@@ -156,7 +158,7 @@ public void setAngle1(double anAngle1)
   velocity1X = velocity1*Math.cos(angle1);
   velocity2X = velocity1X;
   
-  velocity1YB = true;
+  velocity1B = true;
   velocityXB = true;
 }
 
@@ -169,7 +171,7 @@ public void setAngle2(double anAngle2)
   velocity2X = velocity2*Math.cos(angle2);
   velocity1X = velocity2X;
   
-  velocity2YB = true;
+  velocity2B = true;
   velocityXB = true;
 }
 
@@ -184,20 +186,21 @@ public void calculate()
   }
   
   //Check if enough info is given in x
-  if (velocityXB || displacementXB ||)
+  if (velocityXB && displacementXB)
   {
-    xB = true;
+    missingX = false;
   }
   //Check if enough info is given in y
-  else if ((velocity1B && velocity2B && displacementY) || (velocity1B && displacementY && timeB) || (velocity1B && velocity2B && timeB) || (velocity2B && displacementYB && timeB))
+  //else if ((velocity1B && velocity2B && displacementY) || (velocity1B && displacementY && timeB) || (velocity1B && velocity2B && timeB) || (velocity2B && displacementYB && timeB))
+  else if (velocity1B && velocity2B && displacementYB && timeB)
   {
-    yB = true;
+    missingY = false;
   }
   
   //Solve for remaining info
-  while (complete == false)
+  while (missingX || missingY)
   {
-    if (xB == true)
+    if (missingX)
     {
       if (velocityXB == false)
       {
@@ -208,8 +211,9 @@ public void calculate()
         calcDX();
       }
     }
-    else if (yB == true)
+    else if (missingY)
     {
+    if (velocity1B == 
     }
   }
 }
@@ -264,31 +268,37 @@ public void calcV1Y()
 /** Calculates the initial velocity */
 public void calcV1()
 {
+  velocity1B = true;
 }
 
 /** Calculates the final velocity's x component */
 public void calcV2X()
 {
+  velocity1B = true;
 }
 
 /** Calculates the final velocity's y component */
 public void calcV2Y()
 {
+  velocity2B = true;
 }
 
 /** Calculates the final velocity */
 public void calcV2()
 {
+  velocity2B = true;
 }
 
 /** Calculates the displacement x */
 public void calcDX()
 {
+  displacementXB = true;
 }
 
 /** Calculates the displacement y */
 public void calcDY()
 {
+  displacementYB = true;
 }
 
 
@@ -301,7 +311,8 @@ public void updateView()
 /** Resets all values for new calculations */
 public void reset()
 {
-  xB = false;
+  missingX = true;
+  missingY = true;
   //
 }
 }
