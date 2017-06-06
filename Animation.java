@@ -1,10 +1,3 @@
-/** To do:
- * Scale drawing in event that it goes beyond borders
- * 
- * Possibly:
- * draw arc showing complete path of projectile
- */
-
 import java.awt.*;
 import javax.swing.*;
 
