@@ -3,7 +3,7 @@ import java.awt.event.*;
 
 /** ResetController Class
  * The controller for the reset button (to clear all values)
- * @author William San
+ * @author Nicolas Chatziargiriou
  * @since 5/31/17 */ 
 public class ResetController implements ActionListener
 {
