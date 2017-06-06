@@ -22,6 +22,7 @@ public class GUI extends JPanel
   Animation screen;           //the animation of the problem
   JPanel input;               //panel containing input fields
   JPanel buttonPanel;         //panel containing the buttons
+ public static boolean blank = true;
   
   /* Constructor
    * @param aModel    The calculation model */
@@ -41,7 +42,7 @@ public class GUI extends JPanel
     //Initializing components
     JLabel blank = new JLabel();
     
-    screen = new Animation();
+    screen = new Animation(model);
     velocity1 = new JTextField(10);
     velocity2 = new JTextField(10);
     angle1 = new JTextField(10);
@@ -63,7 +64,7 @@ public class GUI extends JPanel
     this.setLayout(layout);
     input.setLayout(layout2);
     buttonPanel.setLayout(layout3);
-
+    
     //Setting borders
     velocity1.setBorder(BorderFactory.createTitledBorder("Initial Velocity"));
     velocity2.setBorder(BorderFactory.createTitledBorder("Impact Velocity"));
@@ -121,22 +122,27 @@ public class GUI extends JPanel
   /* Updates the animation and text fields after calculations */
   public void update()
   {
-    this.velocity1.setText(Double.toString(this.model.getVelocity1()));
-    this.velocity2.setText(Double.toString(this.model.getVelocity2()));
-    this.displacementX.setText(Double.toString(this.model.getDisplacementX()));
-    this.displacementY.setText(Double.toString(this.model.getDisplacementY()));
-    this.time.setText(Double.toString(this.model.getTime()));
-    this.angle.setText(Double.toString(this.model.getAngle()));
-  }
-  
-  /* Resets the values of the textfields */
-  public void reset()
-  {
-    this.velocity1.setText("");
-    this.velocity2.setText("");
-    this.angle.setText("");
-    this.time.setText("");
-    this.displacementX.setText("");
-    this.displacementY.setText("");
+    if (blank)
+    {
+      this.velocity1.setText("");
+      this.velocity2.setText("");
+      this.displacementX.setText("");
+      this.displacementY.setText("");
+      this.time.setText("");
+      this.angle1.setText("");
+      this.angle2.setText("");
+      blank = false;
+    }
+    
+    else
+    {
+      this.velocity1.setText(Double.toString(this.model.getVelocity1()));
+      this.velocity2.setText(Double.toString(this.model.getVelocity2()));
+      this.displacementX.setText(Double.toString(this.model.getDisplacementX()));
+      this.displacementY.setText(Double.toString(this.model.getDisplacementY()));
+      this.time.setText(Double.toString(this.model.getTime()));
+      this.angle1.setText(Double.toString(this.model.getAngle1()));
+      this.angle2.setText(Double.toString(this.model.getAngle2()));
+    }
   }
 }
