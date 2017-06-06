@@ -27,15 +27,14 @@ public class Calculation extends Object
   private double velocity2Y;      //The y-component of projectile's final speed (meters/second)
   private double velocity2X;      //The x-component of projectile's final speed (meters/second)
   
-  private boolean missingX;       //Determines if there are still any x values to calculate
-  private boolean missingY;       //Determines if there are still any y values to calculate
-  private boolean timeB;          //Determines if time is given
-  private boolean velocity1B;     //Determines if initial velocity is given
-  private boolean velocity1YB;    //Determines if initial velocity is given
-  private boolean velocity2B;     //Determines if final velocity is given
-  private boolean velocityXB;     //Determines if any velocity is given (v1X = v2X)
-  private boolean displacementXB; //Determines if displacement in the x direction is given
-  private boolean displacementYB; //Determines if displacement in the y direction is given
+  private boolean missing;        //Determines if there are still any values to calculate
+  private boolean timeB;          //Determines if time is present
+  private boolean velocity1B;     //Determines if initial velocity is present
+  private boolean velocity1YB;    //Determines if initial velocity is present
+  private boolean velocity2B;     //Determines if final velocity is present
+  private boolean velocityXB;     //Determines if any velocity is present (v1X = v2X)
+  private boolean displacementXB; //Determines if displacement in the x direction is present
+  private boolean displacementYB; //Determines if displacement in the y direction is present
 
 /** Default Constructor */
 public Calculation()
@@ -48,8 +47,7 @@ public Calculation()
   this.angle1 = -404;
   this.angle2 = -404;
   
-  this.missingX = true;
-  this.missingY = true;
+  this.missing = true;
 }
 
 /** Sets view for the calculations */
@@ -185,35 +183,37 @@ public void calculate()
     calcTime();
   }
   
-  //Check if enough info is given in x
-  if (velocityXB && displacementXB)
-  {
-    missingX = false;
-  }
-  //Check if enough info is given in y
-  //else if ((velocity1B && velocity2B && displacementY) || (velocity1B && displacementY && timeB) || (velocity1B && velocity2B && timeB) || (velocity2B && displacementYB && timeB))
-  else if (velocity1B && velocity2B && displacementYB && timeB)
-  {
-    missingY = false;
-  }
-  
   //Solve for remaining info
-  while (missingX || missingY)
+  while (missing)
   {
-    if (missingX)
+    if (velocityXB && displacementXB && velocity1B && velocity2B && displacementYB)
     {
-      if (velocityXB == false)
-      {
-        calcV2X();
-      }
-      else if (displacementXB == false)
-      {
-        calcDX();
-      }
+      missing = false;
     }
-    else if (missingY)
+    else
     {
-    if (velocity1B == 
+      missing = true;
+    }
+    
+    if (velocityXB == false)
+    {
+      calcV1X();
+    }
+    else if (displacementXB == false)
+    {
+      calcDX();
+    }
+    if (velocity1YB == false)
+    {
+      calcV1Y();
+    }
+    else if (velocity2YB == false)
+    {
+      calcV2Y();
+    }
+    else if (displacementY == false)
+    {
+      calcDY();
     }
   }
 }
@@ -222,32 +222,63 @@ public void calculate()
 /** Calculates the time */
 public void calcTime()
 {
-  //Check if time can be calculated from x direction
+  //Calculate time from x direction
   if (velocityXB && displacementXB)
   {
     time = displacementX/velocity1X;
   }
-  //Check if time can be calculated from y direction
+  
+  
+  //Calculate time from y direction
   else if (velocity1YB && velocity2YB)
   {
-    time = Math.abs((velocity2Y-velocity1Y)/-9.8);
+    time = (velocity2Y-velocity1Y)/-9.8;
   }
+  
   else if (velocity1YB && displacementYB)
   {
     if (velocity1Y == 0)
     {
-      time = Math.abs(Math.sqrt(2*displacementX));
+      time = Math.sqrt((2*displacementY)/-9.8);
     }
-    //Quadratic equation
+    else if (displacementY <= 0)
+    {
+      time = (-velocity1Y+Math.sqrt((Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))))/-9.8;
+      //Don't use negative time
+      if (time >= 0)
+      {
+      }
+      else
+      {
+        time = (-velocity1Y-Math.sqrt((Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))))/-9.8;
+      }
+    }
+    //Quadratic equation (2 solutions)
     else
     {
-      time = (-velocity1Y+Math.sqrt((Math.pow(velocity1Y,2))-(4*(9.8/2)*(-displacementY))))/9.8;
-      time2 = (-velocity1Y-Math.sqrt((Math.pow(velocity1Y,2))-(4*(9.8/2)*(-displacementY))))/9.8;
+      time = (-velocity1Y+Math.sqrt((Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))))/-9.8;
+      time2 = (-velocity1Y-Math.sqrt((Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))))/-9.8;
     }
   }
+  
   else if (velocity2YB && displacementYB)
   {
-    time = (-velocity1+Math.sqrt((Math.pow(b,2))-(4*a*c)))/(2*a);
+    if (velocity2Y == 0)
+    {
+      time = Math.sqrt((2*displacementY)/9.8);
+    }
+    else
+    {
+      time = (-velocity2Y+Math.sqrt((Math.pow(velocity2Y,2))-(4*(9.8/2)*displacementY)))/9.8;
+      //Don't use negative time
+      if (time >= 0)
+      {
+      }
+      else
+      {
+        time = (-velocity2Y+Math.sqrt((Math.pow(velocity2Y,2))-(4*(9.8/2)*displacementY)))/9.8;
+      }
+    }
   }
   
   timeB = true;
@@ -256,6 +287,9 @@ public void calcTime()
 /** Calculates the initial velocity's x component */
 public void calcV1X()
 {
+  if (velocity2XB)
+  {
+    velocity1X = velocity2X;
   velocity1B = true;
 }
 
