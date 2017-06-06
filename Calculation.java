@@ -16,6 +16,7 @@ public class Calculation extends Object
   private GUI view;               //The view for the simulation
   
   private double time;            //The time of the projectile motion (seconds)
+  private double time2;           //The second time of the projectile motion (quadratic) (seconds)
   private double velocity1;       //The inital speed of the projectile (meters/second)
   private double velocity2;       //The final speed of the projectile (meters/second)
   private double displacementX;   //The horizontal displacement of the projectile (meters)
@@ -32,6 +33,7 @@ public class Calculation extends Object
   private boolean velocity1B;     //Determines if initial velocity is present
   private boolean velocity1YB;    //Determines if initial velocity is present
   private boolean velocity2B;     //Determines if final velocity is present
+  private boolean velocity2YB;    //Determines if final velocity is present
   private boolean velocityXB;     //Determines if any velocity is present (v1X = v2X)
   private boolean displacementXB; //Determines if displacement in the x direction is present
   private boolean displacementYB; //Determines if displacement in the y direction is present
@@ -40,14 +42,16 @@ public class Calculation extends Object
 public Calculation()
 {
   super();
-  this.time = -404;
-  this.velocity1 = -404;
-  this.displacementX = -404;
-  this.displacementY = -404;
-  this.angle1 = -404;
-  this.angle2 = -404;
-  
+   
   this.missing = true;
+  this.timeB = false;
+  this.velocity1B = false;
+  this.velocity1YB = false;
+  this.velocity2B = false;
+  this.velocity2YB = false;
+  this.velocityXB = false;
+  this.displacementXB = false;
+  this.displacementYB = false;
 }
 
 /** Sets view for the calculations */
@@ -287,15 +291,18 @@ public void calcTime()
 /** Calculates the initial velocity's x component */
 public void calcV1X()
 {
-  if (velocity2XB)
-  {
-    velocity1X = velocity2X;
+  
   velocity1B = true;
 }
 
 /** Calculates the initial velocity's y component */
 public void calcV1Y()
 {
+  if (displacementYB && )
+  {
+    
+  }
+  else if (velocity2
   velocity1B = true;
 }
 
@@ -345,8 +352,9 @@ public void updateView()
 /** Resets all values for new calculations */
 public void reset()
 {
-  missingX = true;
-  missingY = true;
+  missing = true;
+  blank = true;
+  updateView();
   //
 }
 }
