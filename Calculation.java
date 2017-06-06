@@ -75,11 +75,39 @@ public double getVelocity1()
   return (this.velocity1);
 }
 
+/** Get the initial velocity's x component
+  * @return The inital speed of the projectile (meters/seconds) */
+public double getVelocity1X()
+{
+  return (this.velocity1X);
+}
+
+/** Get the initial velocity's y component
+  * @return The inital speed of the projectile (meters/seconds) */
+public double getVelocity1Y()
+{
+  return (this.velocity1Y);
+}
+
 /** Get the final velocity
   * @return The final speed of the projectile (meters/seconds) */
 public double getVelocity2()
 {
   return (this.velocity2);
+}
+
+/** Get the final velocity's y component
+  * @return The final speed of the projectile (meters/seconds) */
+public double getVelocity2Y()
+{
+  return (this.velocity2Y);
+}
+
+/** Get the final velocity's x component
+  * @return The final speed of the projectile (meters/seconds) */
+public double getVelocity2X()
+{
+  return (this.velocity2X);
 }
 
 /** Get the displacement in the X direction
@@ -249,10 +277,7 @@ public void calcTime()
     {
       time = (-velocity1Y+Math.sqrt((Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))))/-9.8;
       //Don't use negative time
-      if (time >= 0)
-      {
-      }
-      else
+      if (time < 0)
       {
         time = (-velocity1Y-Math.sqrt((Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))))/-9.8;
       }
@@ -275,10 +300,7 @@ public void calcTime()
     {
       time = (-velocity2Y+Math.sqrt((Math.pow(velocity2Y,2))-(4*(9.8/2)*displacementY)))/9.8;
       //Don't use negative time
-      if (time >= 0)
-      {
-      }
-      else
+      if (time < 0)
       {
         time = (-velocity2Y+Math.sqrt((Math.pow(velocity2Y,2))-(4*(9.8/2)*displacementY)))/9.8;
       }
