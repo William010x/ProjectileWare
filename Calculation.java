@@ -298,11 +298,14 @@ public void calcV1X()
 /** Calculates the initial velocity's y component */
 public void calcV1Y()
 {
-  if (displacementYB && )
+  if (displacementYB)
+  {
+    velocity1Y = 
+  }
+  else if (velocity2YB)
   {
     
   }
-  else if (velocity2
   velocity1B = true;
 }
 
