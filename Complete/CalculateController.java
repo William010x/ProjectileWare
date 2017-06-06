@@ -1,12 +1,10 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-/** 
- * CalculateController Class
+/** CalculateController Class
  * The controller for calculating all values (initial and final situation)
  * @author William San
- * @since 6/5/17
- */ 
+ * @since 6/5/17 */ 
 public class CalculateController implements ActionListener
 {
   private Calculation model;         //The Model used for numbers and calculations
@@ -19,16 +17,7 @@ public class CalculateController implements ActionListener
   private JTextField displacementX;  //The horizontal displacement of the projectile (m)
   private JTextField displacementY;  //The vertical displacement of the projectile (m)
   
-  //private boolean timeB;
-  //private boolean velocity1B;
-  //private boolean velocity2B;
-  //private boolean angle1B;
-  //private boolean angle2B;
-  //private boolean displacementXB;
-  //private boolean displacementYB;
-  
-  /** 
-   * Default constructor
+  /** Default constructor
    * Links the component to the Model
    * @param aModel The Model for numbers and calculations
    * @param t Time of projectile motion (s)
@@ -37,8 +26,7 @@ public class CalculateController implements ActionListener
    * @param theta1 Iniital velocity's angle (above horizontal +, below horizontal -) (degrees)
    * @param theta2 Final velocity's angle (above horizontal +, below horizontal -) (degrees)
    * @param dX Horizontal displacement of the projectile (m)
-   * @param dY Vertical displacement of the projectile (m)
-   */ 
+   * @param dY Vertical displacement of the projectile (m) */ 
   public CalculateController(Calculation aModel, GUI aView, JTextField t, JTextField v1, JTextField v2, JTextField theta1, JTextField theta2, JTextField dX, JTextField dY)
   {
     this.model = aModel;
@@ -52,10 +40,8 @@ public class CalculateController implements ActionListener
     this.displacementY = dY;
   }
   
-  /** 
-   * Calculates all values (initial and final situation)
-   * @param e The event sent from the button
-   */
+  /** Calculates all values (initial and final situation)
+   * @param e The event sent from the button */
   public void actionPerformed(ActionEvent e)
   {
     //Checks if button pressed was the "Start" button
@@ -112,13 +98,16 @@ public class CalculateController implements ActionListener
     }
   }
   
-  /* Data validation for textField inputs */
+  /* Data validation for textField inputs 
+   * @param input Textbox containing data to validate */
   private boolean validate(JTextField input)
   {
-    try{
+    try
+    {
       Double.parseDouble(input.getText());
       return true;
-    } catch (NumberFormatException e)
+    } 
+    catch (NumberFormatException e)
     {
       return false;
     }
