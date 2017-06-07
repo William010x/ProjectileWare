@@ -1,5 +1,7 @@
 Errors
 
+(v1 + ang1 given, v2 + ang2 given)
+angle must be b/w 0 and 90
 displacementX always +ve or 0
 v1x always +ve or 0
 v2y < v1y (=)
