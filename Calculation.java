@@ -151,7 +151,7 @@ public void setTime(double aTime)
   * @aVelocity1 The initial velocity */
 public void setVelocity1(double aVelocity1)
 {
-  this.velocity1 = aVelocity;
+  this.velocity1 = aVelocity1;
   velocity1B = true;
 }
 
@@ -159,7 +159,7 @@ public void setVelocity1(double aVelocity1)
   * @aVelocity1 The final velocity */
 public void setVelocity2(double aVelocity2)
 {
-  this.velocity2 = aVelocity;
+  this.velocity2 = aVelocity2;
   velocity2B = true;
 }
 
@@ -183,7 +183,7 @@ public void setDisplacementY(double aDisplacementY)
   * @anAngle1 The initial angle */
 public void setAngle1(double anAngle1)
 {
-  this.angle1 = anAngle;
+  this.angle1 = anAngle1;
   velocity1Y = velocity1*Math.sin(angle1);
   velocity1X = velocity1*Math.cos(angle1);
   velocity2X = velocity1X;
@@ -196,7 +196,7 @@ public void setAngle1(double anAngle1)
   * @anAngle2 The final angle */
 public void setAngle2(double anAngle2)
 {
-  this.angle2 = anAngle;
+  this.angle2 = anAngle2;
   velocity2Y = velocity2*Math.sin(angle2);
   velocity2X = velocity2*Math.cos(angle2);
   velocity1X = velocity2X;
@@ -243,7 +243,7 @@ public void calculate()
     {
       calcV2Y();
     }
-    else if (displacementY == false)
+    else if (displacementYB == false)
     {
       calcDY();
     }
@@ -322,7 +322,7 @@ public void calcV1Y()
 {
   if (displacementYB)
   {
-    velocity1Y = 
+    velocity1Y = (displacementY - (-9.8/2)(Math.pow(time,2)))/time;
   }
   else if (velocity2YB)
   {
@@ -378,7 +378,7 @@ public void updateView()
 public void reset()
 {
   missing = true;
-  blank = true;
+  GUI.blank = true;
   updateView();
   //
 }
