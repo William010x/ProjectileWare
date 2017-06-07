@@ -1,0 +1,21 @@
+Errors
+
+displacementX always +ve or 0
+v1x always +ve or 0
+v2y < v1y (=)
+if v1y <= 0, displacementY must be -ve (or 0)
+if v2y = 0, displacementY must be +ve (or 0)
+
+if v1+ang1 and v2+ang2 given, v1x must = v2x 
+
+
+2/3 info must be given for x direction (v1or2 + ang / t / dx)
+
+OR
+
+3/4 info must be given for y direction (v1+ang1 / v2+ang2 / t / dy)
+  if v1/dy    (Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))   must be +ve or 0
+  if v2/dy    (Math.pow(velocity2Y,2))-(4*(9.8/2)*displacementY)   must be +ve
+
+
+Too many values
