@@ -229,13 +229,9 @@ public void calculate()
     
     if (velocityXB == false)
     {
-      calcV1X();
+      calcVX();
     }
-    else if (displacementXB == false)
-    {
-      calcDX();
-    }
-    if (velocity1YB == false)
+    else if (velocity1YB == false)
     {
       calcV1Y();
     }
@@ -243,11 +239,25 @@ public void calculate()
     {
       calcV2Y();
     }
+    else if (velocity1B == false && velocity1YB && velocityXB)
+    {
+      calcV1();
+    }
+    else if (velocity2B == false && velocity2YB && velocityXB)
+    {
+      calcV2();
+    }
+    else if (displacementXB == false)
+    {
+      calcDX();
+    }
     else if (displacementYB == false)
     {
       calcDY();
     }
   }
+  
+  
 }
 
 
@@ -292,6 +302,7 @@ public void calcTime()
   
   else if (velocity2YB && displacementYB)
   {
+    //Projectile lands at apex
     if (velocity2Y == 0)
     {
       time = Math.sqrt((2*displacementY)/9.8);
@@ -310,11 +321,15 @@ public void calcTime()
   timeB = true;
 }
 
-/** Calculates the initial velocity's x component */
-public void calcV1X()
+/** Calculates the initial and final velocity's x component */
+public void calcVX()
 {
-  
-  velocity1B = true;
+  if (displacementXB) //Check unnecessary
+  {
+    velocity1X = displacementX/time;
+    velocity2X = velocity1X;
+  }
+  velocityXB = true;
 }
 
 /** Calculates the initial velocity's y component */
@@ -322,48 +337,65 @@ public void calcV1Y()
 {
   if (displacementYB)
   {
-    velocity1Y = (displacementY - (-9.8/2)(Math.pow(time,2)))/time;
+    velocity1Y = (displacementY - (-9.8/2)*(Math.pow(time,2)))/time;
   }
   else if (velocity2YB)
   {
-    
+    velocity1Y = velocity2Y/(-9.8*time);
   }
-  velocity1B = true;
-}
-
-/** Calculates the initial velocity */
-public void calcV1()
-{
-  velocity1B = true;
-}
-
-/** Calculates the final velocity's x component */
-public void calcV2X()
-{
   velocity1B = true;
 }
 
 /** Calculates the final velocity's y component */
 public void calcV2Y()
 {
+  if (displacementYB)
+  {
+    velocity2Y = (displacementY + (-9.8/2)*(Math.pow(time,2)))/time;
+  }
+  else if (velocity1YB)
+  {
+    velocity2Y = velocity1Y + (-9.8*time);
+  }
   velocity2B = true;
+}
+
+/** Calculates the initial velocity */
+public void calcV1()
+{
+  velocity1 = Math.sqrt(Math.pow(velocity1X,2)+Math.pow(velocity1Y,2));
+  //Angle
+  velocity1B = true;
 }
 
 /** Calculates the final velocity */
 public void calcV2()
 {
+  velocity2 = Math.sqrt(Math.pow(velocity2X,2)+Math.pow(velocity2Y,2));
   velocity2B = true;
 }
 
 /** Calculates the displacement x */
 public void calcDX()
 {
+  if (velocityXB) //Unnecessary
+  {
+    displacementX = velocity1X*time;
+  }
   displacementXB = true;
 }
 
 /** Calculates the displacement y */
 public void calcDY()
 {
+  if (velocity1YB)
+  {
+    
+  }
+  else if (velocity2YB)
+  {
+    
+  }
   displacementYB = true;
 }
 
