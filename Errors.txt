@@ -19,5 +19,6 @@ OR
   if v1/dy    (Math.pow(velocity1Y,2))-(4*(-9.8/2)*(-displacementY))   must be +ve or 0
   if v2/dy    (Math.pow(velocity2Y,2))-(4*(9.8/2)*displacementY)   must be +ve
 
+After 2/3 X or 3/4 Y, the other direction must have 1/2 X or 2/3 Y (not including time)
 
 Too many values
