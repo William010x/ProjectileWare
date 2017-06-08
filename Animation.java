@@ -1,3 +1,10 @@
+/** To do:
+ * Scale drawing in event that it goes beyond borders
+ * 
+ * Possibly:
+ * draw arc showing complete path of projectile
+ */
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -6,7 +13,7 @@ import javax.swing.*;
   * @since 6/5/2017 */
 public class Animation extends JComponent
 {
-  private Calculation model;
+private Calculation model;
   private int positionX;
   private int positionY;
   
@@ -15,7 +22,7 @@ public class Animation extends JComponent
   public Animation(Calculation aModel)
   {
     super ();
-    this.setPreferredSize(new Dimension(500,100));
+    this.setPreferredSize(new Dimension(100,250));
     this.model = aModel;
   }
   
@@ -28,14 +35,14 @@ public class Animation extends JComponent
     super.paintComponent(g);
     
     g.setColor(Color.BLACK);
-    g.fillOval(0 + positionX, 50 + positionY, 5, 5);
+    g.fillOval(0 + positionX, 125 + positionY, 20, 20);
    }
   
   /** Calls the moveVertical and moveHorizontal methods */
   public void start()
   {
     //Moves object in 0.1 sec increments until the maximum time value is reached
-    for (double t = 0; t < this.model.getTime(); t += 0.1)
+    for (double t = 0; t < this.model.getTime(); t += 0.01)
     {
       moveHorizontal(t);
       moveVertical(t);
@@ -43,7 +50,7 @@ public class Animation extends JComponent
       
       try
       {
-        Thread.currentThread( ).sleep(100);
+        Thread.currentThread( ).sleep(2);
       } catch (InterruptedException ie) {
       }
     }
@@ -53,14 +60,14 @@ public class Animation extends JComponent
     * @param       the current time at object's position */
   private void moveHorizontal(double time)
   {
-    this.positionY = (int)((this.model.getVelocity1() * Math.sin(this.model.getAngle1()) * time) + (0.5 * -9.81 * Math.pow(time, 2)));
+    this.positionY = (int)((this.model.getVelocity1() * Math.sin(Math.toRadians(this.model.getAngle1())) * time) + (0.5 * -9.81 * Math.pow(time, 2)));
   }
   
   /** Calculates the object's new vertical position
     * @param       the current time at object's position */
   private void moveVertical(double time)
   {
-    this.positionX = (int)(this.model.getVelocity1() * Math.cos(this.model.getAngle1()) * time);
+    this.positionX = (int)(this.model.getVelocity1() * Math.cos(Math.toRadians(this.model.getAngle1())) * time);
   }
   
   /** Clears the animation screen */
