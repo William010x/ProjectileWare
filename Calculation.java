@@ -257,7 +257,7 @@ public void calculate()
     }
   }
   
-  
+  updateView();
 }
 
 
