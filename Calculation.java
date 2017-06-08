@@ -184,8 +184,8 @@ public void setDisplacementY(double aDisplacementY)
 public void setAngle1(double anAngle1)
 {
   this.angle1 = anAngle1;
-  velocity1Y = velocity1*Math.sin(angle1);
-  velocity1X = velocity1*Math.cos(angle1);
+  velocity1Y = velocity1*Math.sin(Math.toRadians(angle1));
+  velocity1X = velocity1*Math.cos(Math.toRadians(angle1));
   velocity2X = velocity1X;
   
   velocity1B = true;
@@ -197,8 +197,8 @@ public void setAngle1(double anAngle1)
 public void setAngle2(double anAngle2)
 {
   this.angle2 = anAngle2;
-  velocity2Y = velocity2*Math.sin(angle2);
-  velocity2X = velocity2*Math.cos(angle2);
+  velocity2Y = velocity2*Math.sin(Math.toRadians(angle2));
+  velocity2X = velocity2*Math.cos(Math.toRadians(angle2));
   velocity1X = velocity2X;
   
   velocity2B = true;
