@@ -390,11 +390,11 @@ public void calcDY()
 {
   if (velocity1YB)
   {
-    
+    displacementY = velocity1*time + (-9.8/2)*(Math.pow(time,2));
   }
   else if (velocity2YB)
   {
-    
+    displacementY = velocity2Y*time - (-9.8/2)*(Math.pow(time,2));
   }
   displacementYB = true;
 }
@@ -409,9 +409,27 @@ public void updateView()
 /** Resets all values for new calculations */
 public void reset()
 {
-  missing = true;
   GUI.blank = true;
+  
+  time = 0;
+  time2 = 0;
+  velocity1 = 0;
+  velocity1Y = 0;
+  velocity1X = 0;
+  velocity2 = 0;
+  velocity2Y = 0;
+  velocity2X = 0;
+  
+  timeB = false;
+  missing = true;
+  velocity1B = false;
+  velocity1YB = false;
+  velocity2B = false;
+  velocity2YB = false;
+  velocityXB = false;
+  displacementXB = false;
+  displacementYB = false;
+  
   updateView();
-  //
 }
 }
