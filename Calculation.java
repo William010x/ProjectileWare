@@ -7,6 +7,26 @@
 //  V2^2 = V1^2 + 2(A)ΔD
 //  ΔD = V1(ΔT) + 1/2(A)ΔT^2
 
+//Standard Test Calculations
+
+//Given
+//dX = 96
+//dY = -82
+//angle1 = 0
+//
+//t = 4.1
+//v1 = 23
+
+//Given
+//angle1 = 42
+//v1 = 12
+//dY = -9.5
+//
+//t = 2.4
+//dX = 22
+//v2 = 18
+//angle2 = -60
+
 /** Calculation class
   * Model that performs calculations
   * @since 6/05/2017
