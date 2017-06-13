@@ -85,77 +85,77 @@ public void setGUI(GUI aView)
   * @return Time of projectile motion */
 public double getTime()
 {
-  return (this.time);
+  return (Math.round(this.time*100)/100.0);
 }
 
 /** Get the initial velocity
   * @return The inital speed of the projectile (meters/seconds) */
 public double getVelocity1()
 {
-  return (this.velocity1);
+  return (Math.round(this.velocity1*100)/100.0);
 }
 
 /** Get the initial velocity's x component
   * @return The inital speed of the projectile (meters/seconds) */
 public double getVelocity1X()
 {
-  return (this.velocity1X);
+  return (Math.round(this.velocity1X*100)/100.0);
 }
 
 /** Get the initial velocity's y component
   * @return The inital speed of the projectile (meters/seconds) */
 public double getVelocity1Y()
 {
-  return (this.velocity1Y);
+  return (Math.round(this.velocity1Y*100)/100.0);
 }
 
 /** Get the final velocity
   * @return The final speed of the projectile (meters/seconds) */
 public double getVelocity2()
 {
-  return (this.velocity2);
+  return (Math.round(this.velocity2*100)/100.0);
 }
 
 /** Get the final velocity's y component
   * @return The final speed of the projectile (meters/seconds) */
 public double getVelocity2Y()
 {
-  return (this.velocity2Y);
+  return (Math.round(this.velocity2Y*100)/100.0);
 }
 
 /** Get the final velocity's x component
   * @return The final speed of the projectile (meters/seconds) */
 public double getVelocity2X()
 {
-  return (this.velocity2X);
+  return (Math.round(this.velocity2X*100)/100.0);
 }
 
 /** Get the displacement in the X direction
   * @return The horizontal displacement of the projectile (meters) */
 public double getDisplacementX()
 {
-  return (this.displacementX);
+  return (Math.round(this.displacementX*100)/100.0);
 }
 
 /** Get the displacement in the Y direction
   * @return The vertical displacement of the projectile (meters) */
 public double getDisplacementY()
 {
-  return this.displacementY;
+  return (Math.round(this.displacementY*100)/100.0);
 }
 
 /** Get the inital velocity's angle
   * @return The inital velocity's angle above or below the horizontal (above +, below -) (degrees) */
 public double getAngle1()
 {
-  return (this.angle1);
+  return (Math.round(this.angle1*10)/10.0);
 }
 
 /** Get the final velocity's angle
   * @return The final velocity's angle above or below the horizontal (above +, below -) (degrees) */
 public double getAngle2()
 {
-  return (this.angle2);
+  return (Math.round(this.angle2*10)/10.0);
 }
 
 
@@ -208,7 +208,7 @@ public void setAngle1(double anAngle1)
   velocity1X = velocity1*Math.cos(Math.toRadians(angle1));
   velocity2X = velocity1X;
   
-  velocity1B = true;
+  velocity1YB = true;
   velocityXB = true;
 }
 
@@ -221,7 +221,7 @@ public void setAngle2(double anAngle2)
   velocity2X = velocity2*Math.cos(Math.toRadians(angle2));
   velocity1X = velocity2X;
   
-  velocity2B = true;
+  velocity2YB = true;
   velocityXB = true;
 }
 
@@ -238,7 +238,7 @@ public void calculate()
   //Solve for remaining info
   while (missing)
   {
-    if (velocityXB && displacementXB && velocity1B && velocity2B && displacementYB)
+    if (velocityXB && displacementXB && velocity1YB && velocity2YB && velocity1B && velocity2B && displacementYB)
     {
       missing = false;
     }
@@ -363,7 +363,7 @@ public void calcV1Y()
   {
     velocity1Y = velocity2Y/(-9.8*time);
   }
-  velocity1B = true;
+  velocity1YB = true;
 }
 
 /** Calculates the final velocity's y component */
@@ -377,7 +377,7 @@ public void calcV2Y()
   {
     velocity2Y = velocity1Y + (-9.8*time);
   }
-  velocity2B = true;
+  velocity2YB = true;
 }
 
 /** Calculates the initial velocity */
@@ -392,6 +392,7 @@ public void calcV1()
 public void calcV2()
 {
   velocity2 = Math.sqrt(Math.pow(velocity2X,2)+Math.pow(velocity2Y,2));
+  //Angle
   velocity2B = true;
 }
 
