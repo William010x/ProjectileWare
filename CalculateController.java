@@ -109,8 +109,10 @@ public class CalculateController implements ActionListener
           inputGiven++;
         }
         
-        else
+        else{
           view.velocity2.setText("Invalid");
+          invalidInput = true;
+      }
       }
       
       //Set angle 1
@@ -127,8 +129,10 @@ public class CalculateController implements ActionListener
           inputGiven++;
         }
         
-        else
+        else{
           view.angle1.setText("Invalid");
+          invalidInput = true;
+      }
       }
       //Set angle 2
       if (!angle2.getText().equals(""))
@@ -140,8 +144,10 @@ public class CalculateController implements ActionListener
           inputGiven++;
         }
         
-        else
+        else{
           view.angle2.setText("Invalid");
+          invalidInput = true;
+      }
       }
       //Set displacementX
       if (!displacementX.getText().equals(""))
@@ -157,8 +163,10 @@ public class CalculateController implements ActionListener
           inputGiven++;
         }
         
-        else
+        else{
           view.displacementX.setText("Invalid");
+          invalidInput = true;
+      }
       }
       //Set displacementY
       if (!displacementY.getText().equals(""))
@@ -170,8 +178,10 @@ public class CalculateController implements ActionListener
           inputGiven++;
         }
         
-        else
+        else{
           view.displacementY.setText("Invalid");
+          invalidInput = true;
+      }
       }
       
       if (!invalidInput && inputGiven != 7)
