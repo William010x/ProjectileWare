@@ -8,21 +8,23 @@ public class GUI extends JPanel
 {
   Calculation model;
   
-  JTextField velocity1;                //display/entry for initial velocity
-  JTextField velocity2;                //display/entry for final velocity
-  JTextField angle1;                   //display/entry for initial angle
-  JTextField angle2;                   //display/entry for impact angle
-  JTextField time;                     //display/entry for time
-  JTextField displacementX;            //display/entry for final horizontal displacement
-  JTextField displacementY;            //display/entry for final vertical displacement
+  static JFrame error = new JFrame();  //frame for displaying errorPane
+  JTextField velocity1;       //display/entry for initial velocity
+  JTextField velocity2;       //display/entry for final velocity
+  JTextField angle1;          //display/entry for initial angle
+  JTextField angle2;          //display/entry for impact angle
+  JTextField time;            //display/entry for time
+  JTextField displacementX;   //display/entry for final horizontal displacement
+  JTextField displacementY;   //display/entry for final vertical displacement
   
-  JButton start;                       //the start button
-  JButton calculate;                   //the calculate button
-  JButton reset;                       //the reset button
-  Animation screen;                    //the animation of the problem
-  JPanel input;                        //panel containing input fields
-  JPanel buttonPanel;                  //panel containing the buttons
-  public static boolean blank = true;  //variable for setting textfields to blank
+  JButton start;              //the start button
+  JButton calculate;          //the calculate button
+  JButton reset;              //the reset button
+  static JOptionPane errorPane;  //optionPane showing error message
+  Animation screen;           //the animation of the problem
+  JPanel input;               //panel containing input fields
+  JPanel buttonPanel;         //panel containing the buttons
+  public static boolean blank = true; // variable for setting textfields
   
   /* Constructor
    * @param aModel    The calculation model */
@@ -40,7 +42,7 @@ public class GUI extends JPanel
   private void layoutView()
   {
     //Initializing components
-    JLabel separator = new JLabel();
+    JLabel blank = new JLabel();
     
     screen = new Animation(model);
     velocity1 = new JTextField(10);
@@ -54,6 +56,7 @@ public class GUI extends JPanel
     start = new JButton("Start");
     calculate = new JButton("Calculate");
     reset = new JButton("Reset");
+    errorPane = new JOptionPane();
     input = new JPanel();
     buttonPanel = new JPanel();
     
@@ -80,7 +83,7 @@ public class GUI extends JPanel
     //Setting sizes
     start.setPreferredSize(new Dimension(100, 25));
     calculate.setPreferredSize(new Dimension(100, 25));
-    separator.setPreferredSize(new Dimension(100, 25));
+    blank.setPreferredSize(new Dimension(100, 25));
     
     //Adding components
     input.add(velocity1);
@@ -95,8 +98,10 @@ public class GUI extends JPanel
     buttonPanel.add(reset);
     buttonPanel.add(calculate);
     
+    error.add(errorPane);
+    
     this.add(input, BorderLayout.WEST);
-    this.add(separator, BorderLayout.CENTER);
+    this.add(blank, BorderLayout.CENTER);
     this.add(buttonPanel, BorderLayout.EAST);
     this.add(screen, BorderLayout.NORTH);
   }
@@ -122,7 +127,6 @@ public class GUI extends JPanel
   /* Updates the animation and text fields after calculations */
   public void update()
   {
-    //Setting textfields to blank on startup or reset
     if (blank)
     {
       this.velocity1.setText("");
@@ -135,7 +139,6 @@ public class GUI extends JPanel
       blank = false;
     }
     
-    //Setting textfields to values after calculating them
     else
     {
       this.velocity1.setText(Double.toString(this.model.getVelocity1()));
@@ -146,5 +149,21 @@ public class GUI extends JPanel
       this.angle1.setText(Double.toString(this.model.getAngle1()));
       this.angle2.setText(Double.toString(this.model.getAngle2()));
     }
+  }
+  
+  /** Shows an error message if user inputs something invalid */
+  public static void errorMessage(int errorCode)
+  {
+    if (errorCode == 1)
+      errorPane.showMessageDialog(error, "Error: Too many values given.");
+
+    else if (errorCode == 2)
+      errorPane.showMessageDialog(error, "Error: Horizontal displacement cannot be negative.");
+    
+    else if (errorCode == 3)
+      errorPane.showMessageDialog(error, "Error: Initial angle must be between 0 and 90.");
+    
+    else if (errorCode == 4)
+      errorPane.showMessageDialog(error, "Error: Invalid input(s).");
   }
 }

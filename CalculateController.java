@@ -81,24 +81,40 @@ public class CalculateController implements ActionListener
           model.setTime(Double.parseDouble(time.getText()));
           timeB = true;
           inputGiven++;
+          
+          if (false)
+          {
+          }
+          
+          else
+          {
+            view.time.setText("Invalid");
+            invalidInput = true;
+          }
         }
-        
-        else
-          view.time.setText("Invalid");
       }
+      
       //Set velocity 1
       if (!velocity1.getText().equals(""))
       {
         if (validate(velocity1))
         {
-          model.setVelocity1(Double.parseDouble(velocity1.getText()));
-          velocity1B = true;
-          inputGiven++;
+          if (Double.parseDouble(velocity1.getText()) > 0)
+          {
+            model.setVelocity1(Double.parseDouble(velocity1.getText()));
+            velocity1B = true;
+            inputGiven++;
+          }
+          
+          else
+          {
+            view.velocity1.setText("Invalid");
+            invalidInput = true;
+          }
         }
         
-        else
-          view.velocity1.setText("Invalid");
       }
+      
       //Set velocity 2
       if (!velocity2.getText().equals(""))
       {
@@ -107,12 +123,14 @@ public class CalculateController implements ActionListener
           model.setVelocity2(Double.parseDouble(velocity2.getText()));
           velocity2B = true;
           inputGiven++;
+          
         }
         
-        else{
+        else
+        {
           view.velocity2.setText("Invalid");
           invalidInput = true;
-      }
+        }
       }
       
       //Set angle 1
@@ -124,16 +142,17 @@ public class CalculateController implements ActionListener
           {
             angle1B = true;
             model.setAngle1(Double.parseDouble(angle1.getText()));
+            inputGiven++;
           }
           
-          inputGiven++;
+          else
+          {
+            view.angle1.setText("Invalid");
+            invalidInput = true;
+          }
         }
-        
-        else{
-          view.angle1.setText("Invalid");
-          invalidInput = true;
       }
-      }
+      
       //Set angle 2
       if (!angle2.getText().equals(""))
       {
@@ -142,13 +161,16 @@ public class CalculateController implements ActionListener
           model.setAngle2(Double.parseDouble(angle2.getText()));
           angle2B = true;
           inputGiven++;
+          
         }
         
-        else{
+        else
+        {
           view.angle2.setText("Invalid");
           invalidInput = true;
+        }
       }
-      }
+      
       //Set displacementX
       if (!displacementX.getText().equals(""))
       {
@@ -160,14 +182,18 @@ public class CalculateController implements ActionListener
             model.setDisplacementX(Double.parseDouble(displacementX.getText()));
           }
           
+          else
+          {
+            view.displacementX.setText("Invalid");
+            invalidInput = true;
+            System.out.println("as intended");
+          }
+          
           inputGiven++;
         }
         
-        else{
-          view.displacementX.setText("Invalid");
-          invalidInput = true;
       }
-      }
+      
       //Set displacementY
       if (!displacementY.getText().equals(""))
       {
@@ -178,10 +204,11 @@ public class CalculateController implements ActionListener
           inputGiven++;
         }
         
-        else{
+        else
+        {
           view.displacementY.setText("Invalid");
           invalidInput = true;
-      }
+        }
       }
       
       if (!invalidInput && inputGiven != 7)
@@ -205,18 +232,18 @@ public class CalculateController implements ActionListener
           this.view.errorMessage(4);
       }
     }
- }
-    
-    /* Data validation for textField inputs */
-    private boolean validate(JTextField input)
+  }
+  
+  /* Data validation for textField inputs */
+  private boolean validate(JTextField input)
+  {
+    try{
+      Double.parseDouble(input.getText());
+      return true;
+    } catch (NumberFormatException e)
     {
-      try{
-        Double.parseDouble(input.getText());
-        return true;
-      } catch (NumberFormatException e)
-      {
-        invalidInput = true;
-        return false;
-      }
+      invalidInput = true;
+      return false;
     }
   }
+}
