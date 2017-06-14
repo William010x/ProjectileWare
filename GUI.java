@@ -164,6 +164,21 @@ public class GUI extends JPanel
       errorPane.showMessageDialog(error, "Error: Initial angle must be between 0 and 90.");
     
     else if (errorCode == 4)
+      errorPane.showMessageDialog(error, "Error: Time has to be positive.");
+    
+    else if (errorCode == 5)
+      errorPane.showMessageDialog(error, "Error: Initial velocity has to be positive.");
+    
+    else if (errorCode == 6)
+      errorPane.showMessageDialog(error, "Error: Impact velocity has to be less than or equal to initial velocity.");
+    
+    else if (errorCode == 7)
+      errorPane.showMessageDialog(error, "Error: Vertical displacement must be less than or equal to zero, since initial vertical velocity is negative.");
+    
+    else if (errorCode == 8)
+      errorPane.showMessageDialog(error, "Error: Vertical displacement must be greater than or equal to zero, since impact vertical velocity is zero.");
+    
+    else if (errorCode == 9)
       errorPane.showMessageDialog(error, "Error: Invalid input(s).");
   }
 }
