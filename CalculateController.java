@@ -6,7 +6,7 @@ import java.awt.event.*;
 /** 
  * CalculateController Class
  * The controller for calculating all values (initial and final situation)
- * @author William San
+ * @author Nicolas Chatziargiriou, William San, Tu Tran
  * @since 6/5/17
  */ 
 public class CalculateController implements ActionListener
@@ -121,8 +121,8 @@ public class CalculateController implements ActionListener
       {
         if (validate(velocity2))
         {
-          //if velocity1 exists, and is bigger than v2, then sets v2
-          if (velocity1B && Double.parseDouble(velocity2.getText()) < Double.parseDouble(velocity1.getText()))
+          //if velocity1 exists, and is bigger than or equal to v2, then sets v2
+          if (velocity1B && Double.parseDouble(velocity2.getText()) <= Double.parseDouble(velocity1.getText()))
           {
             model.setVelocity2(Double.parseDouble(velocity2.getText()));
             velocity2B = true;
@@ -287,11 +287,18 @@ public class CalculateController implements ActionListener
         }
       }
       
-//      if (!invalidInput && inputGiven != 7)
-//      {
-//        model.calculate();
-//        view.update();
-//      }
+      if (!invalidInput && inputGiven !=7)
+      {
+        model.calculate();
+        view.update();
+      }
+      
+      else 
+      {
+        this.view.errorMessage(1);
+      }
+        
+      
 //      
 //      else
 //      {
