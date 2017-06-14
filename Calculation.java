@@ -1,12 +1,3 @@
-// Calculation Equations:
-
-//  Aav = (V2-V1) ΔD
-//  V2 = V1 + (A)ΔT
-//  ΔD = ((V1+V2)/2) ΔT
-//  ΔD = V2(ΔT) - 1/2(A)ΔT^2
-//  V2^2 = V1^2 + 2(A)ΔD
-//  ΔD = V1(ΔT) + 1/2(A)ΔT^2
-
 //Standard Test Calculations
 
 //Given
@@ -384,7 +375,7 @@ public void calcV2Y()
 public void calcV1()
 {
   velocity1 = Math.sqrt(Math.pow(velocity1X,2)+Math.pow(velocity1Y,2));
-  //Angle
+  angle1 = Math.toDegrees(Math.atan(velocity1Y/velocity1X));
   velocity1B = true;
 }
 
@@ -392,7 +383,7 @@ public void calcV1()
 public void calcV2()
 {
   velocity2 = Math.sqrt(Math.pow(velocity2X,2)+Math.pow(velocity2Y,2));
-  //Angle
+  angle2 = Math.toDegrees(Math.atan(velocity2Y/velocity2X));
   velocity2B = true;
 }
 
