@@ -258,7 +258,18 @@ public class CalculateController implements ActionListener
           view.displacementY.setText("Invalid");
       }
       
-      if (!invalidInput && inputGiven != 7)
+  private boolean timeB = false;
+  private boolean velocity1B = false;
+  private boolean velocity2B = false;
+  private boolean angle1B = false;
+  private boolean angle2B = false;
+  private boolean displacementXB = false;
+  private boolean displacementYB = false;
+  
+      if (timeB && velocity1B && velocity2B && angle1B && angle2B && displacementXB && displacementYB)
+        this.view.errorMessage(1);
+      
+      else
       {
         model.calculate();
         view.update();
