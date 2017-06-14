@@ -12,7 +12,7 @@ public class ResetController implements ActionListener
   /** Default constructor
    * Links model to Reset button
    * @param aModel The Model storing all the numbers */ 
-  public ResetController(Calculation model)
+  public ResetController(Calculation aModel)
   {
     this.model = aModel;
   }
