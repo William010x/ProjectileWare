@@ -16,7 +16,7 @@ public class StartUp
   {
     //Initialize the Frame
     JFrame frame = new JFrame("Projectile Motion Simulator");
-    frame.setSize(600,300);
+    frame.setSize(600,400);
     frame.setResizable(false);
     frame.setLocation(100,100);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
