@@ -21,8 +21,6 @@ public class CalculateController implements ActionListener
   private JTextField displacementX;  //The horizontal displacement of the projectile (m)
   private JTextField displacementY;  //The vertical displacement of the projectile (m)
   
-  private boolean invalidInput = false;  //if any inputs are invalid
-  
   private boolean timeB = false;
   private boolean velocity1B = false;
   private boolean velocity2B = false;
@@ -30,6 +28,7 @@ public class CalculateController implements ActionListener
   private boolean angle2B = false;
   private boolean displacementXB = false;
   private boolean displacementYB = false;
+  private boolean errorMessage = false;   //if any error message is shown
   
   /** 
    * Default constructor
@@ -62,8 +61,6 @@ public class CalculateController implements ActionListener
    */
   public void actionPerformed(ActionEvent e)
   {
-    int inputGiven = 0;    //number of inputs given
-    
     //Checks if button pressed was the "Start" button
     if (((JButton) e.getSource()).getText().equals("Start"))
     {
@@ -82,17 +79,19 @@ public class CalculateController implements ActionListener
           {
             model.setTime(Double.parseDouble(time.getText()));
             timeB = true;
-            inputGiven++;
           }
           
           else
           {
+            timeB = false;
             view.time.setText("Invalid");
-            invalidInput = true;
             this.view.errorMessage(4);
+            errorMessage = true;
           }
         }
       }
+      else
+        timeB = false;
       
       //Set velocity 1
       if (!velocity1.getText().equals(""))
@@ -103,47 +102,49 @@ public class CalculateController implements ActionListener
           {
             model.setVelocity1(Double.parseDouble(velocity1.getText()));
             velocity1B = true;
-            inputGiven++;
           }
           
           else
           {
+            velocity1B = false;
             view.velocity1.setText("Invalid");
-            invalidInput = true;
             this.view.errorMessage(5);
+            errorMessage = true;
           }
         }
-        
       }
+      else
+        velocity1B = false;
       
       //Set velocity 2
       if (!velocity2.getText().equals(""))
       {
         if (validate(velocity2))
         {
-          //if velocity1 exists, and is bigger than or equal to v2, then sets v2
-          if (velocity1B && Double.parseDouble(velocity2.getText()) <= Double.parseDouble(velocity1.getText()))
+          //if velocity1 exists, and is less than or equal to v2, then sets v2
+          if (velocity1B && Double.parseDouble(velocity2.getText()) >= Double.parseDouble(velocity1.getText()))
           {
             model.setVelocity2(Double.parseDouble(velocity2.getText()));
             velocity2B = true;
-            inputGiven++;
           }
           
           else if (!velocity1B)
           {
             model.setVelocity2(Double.parseDouble(velocity2.getText()));
             velocity2B = true;
-            inputGiven++;
           }
           
           else
           {
+            velocity2B = false;
             view.velocity2.setText("Invalid");
-            invalidInput = true;
             this.view.errorMessage(6);
+            errorMessage = true;
           }
         }
       }
+      else
+        velocity2B = false;
       
       //Set angle 1
       if (!angle1.getText().equals(""))
@@ -154,17 +155,19 @@ public class CalculateController implements ActionListener
           {
             angle1B = true;
             model.setAngle1(Double.parseDouble(angle1.getText()));
-            inputGiven++;
           }
           
           else
           {
+            angle1B = false;
             view.angle1.setText("Invalid");
-            invalidInput = true;
             this.view.errorMessage(3);
+            errorMessage = true;
           }
         }
       }
+      else
+        angle1B = false;
       
       //Set angle 2
       if (!angle2.getText().equals(""))
@@ -173,15 +176,16 @@ public class CalculateController implements ActionListener
         {
           model.setAngle2(Double.parseDouble(angle2.getText()));
           angle2B = true;
-          inputGiven++;
         }
         
         else
         {
+          angle2B = false;
           view.angle2.setText("Invalid");
-          invalidInput = true;
         }
       }
+      else
+        angle2B = false;
       
       //Set displacementX
       if (!displacementX.getText().equals(""))
@@ -196,15 +200,15 @@ public class CalculateController implements ActionListener
           
           else
           {
+            displacementXB = false;
             view.displacementX.setText("Invalid");
-            invalidInput = true;
             this.view.errorMessage(2);
+            errorMessage = true;
           }
-          
-          inputGiven++;
         }
-        
       }
+      else
+        displacementXB = false;
       
       //Set displacementY
       if (!displacementY.getText().equals(""))
@@ -221,14 +225,14 @@ public class CalculateController implements ActionListener
               {
                 model.setDisplacementY(Double.parseDouble(displacementY.getText()));
                 displacementYB = true;
-                inputGiven++;
               }
               
               else
               {
+                displacementYB = false;
                 view.displacementY.setText("Invalid");
-                invalidInput = true;
                 this.view.errorMessage(7);
+                errorMessage = true;
               }
             }
             
@@ -237,7 +241,6 @@ public class CalculateController implements ActionListener
             {
               model.setDisplacementY(Double.parseDouble(displacementY.getText()));
               displacementYB = true;
-              inputGiven++;
             }
           }
           
@@ -251,14 +254,14 @@ public class CalculateController implements ActionListener
               {
                 model.setDisplacementY(Double.parseDouble(displacementY.getText()));
                 displacementYB = true;
-                inputGiven++;
               }
               
               else
               {
+                displacementYB = false;
                 view.displacementY.setText("Invalid");
-                invalidInput = true;
                 this.view.errorMessage(8);
+                errorMessage = true;
               }
             }
             
@@ -267,7 +270,6 @@ public class CalculateController implements ActionListener
             {
               model.setDisplacementY(Double.parseDouble(displacementY.getText()));
               displacementYB = true;
-              inputGiven++;
             }
           }
           
@@ -276,44 +278,63 @@ public class CalculateController implements ActionListener
           {
             model.setDisplacementY(Double.parseDouble(displacementY.getText()));
             displacementYB = true;
-            inputGiven++;
           }
         }
         
         else
         {
+          displacementYB = false;
           view.displacementY.setText("Invalid");
-          invalidInput = true;
         }
       }
+      else
+        displacementYB = false;
       
-      if (!invalidInput && inputGiven !=7)
-      {
-        model.calculate();
-        view.update();
-      }
+      //Checking how many inputs were given and valid
+      int inputGiven = 0;
+      inputGiven += timeB ? 1 : 0;
+      inputGiven += velocity1B ? 1 : 0;
+      inputGiven += velocity2B ? 1 : 0;
+      inputGiven += angle1B ? 1 : 0;
+      inputGiven += angle2B ? 1 : 0;
+      inputGiven += displacementXB ? 1 : 0;
+      inputGiven += displacementYB ? 1 : 0;
       
-      else 
-      {
+      if (inputGiven == 7)
         this.view.errorMessage(1);
-      }
-        
       
-//      
-//      else
-//      {
-//        if (inputGiven == 7)
-//          this.view.errorMessage(1);
-//        
-//        else if (!displacementXB && !displacementX.getText().equals(""))
-//          this.view.errorMessage(2);
-//        
-//        else if (!angle1B && !angle1.getText().equals(""))
-//          this.view.errorMessage(3);
-//        
-//        else
-//          this.view.errorMessage(4);
-//      }
+      else
+      {
+        //Checking how many X values were given
+        int xGiven = 0;
+        xGiven += timeB ? 1 : 0;
+        xGiven += velocity1B ? 1 : 0;
+        xGiven += velocity2B ? 1 : 0;
+        xGiven += angle1B ? 1 : 0;
+        xGiven += angle2B ? 1 : 0;
+        xGiven += displacementXB ? 1 : 0;
+        
+        //Checking how many Y values were given
+        int yGiven = 0;
+        yGiven += timeB ? 1 : 0;
+        yGiven += velocity1B ? 1 : 0;
+        yGiven += velocity2B ? 1 : 0;
+        yGiven += angle1B ? 1 : 0;
+        yGiven += angle2B ? 1 : 0;
+        yGiven += displacementYB ? 1 : 0;
+        
+        if (!errorMessage)
+        {
+          if (xGiven > 2 || yGiven > 3)
+          {
+            model.calculate();
+            view.update();
+          }
+        }
+        
+        else
+          this.view.errorMessage(9);
+      }
     }
   }
   
@@ -325,7 +346,7 @@ public class CalculateController implements ActionListener
       return true;
     } catch (NumberFormatException e)
     {
-      invalidInput = true;
+      
       return false;
     }
   }
