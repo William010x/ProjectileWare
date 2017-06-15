@@ -120,8 +120,15 @@ public class GUI extends JPanel
   /* Runs the animation of the problem */
   public void runAnimation()
   {
-    this.screen.start();
-    this.update();
+    //Moves object in 0.1 sec increments until the maximum time value is reached
+    for (double t = 0; t < this.model.getTime(); t += 0.1)
+    {
+      screen.moveHorizontal(t);
+      screen.moveVertical(t);
+      this.update();
+      
+      System.out.println(t);
+    }
   }
   
   /* Updates the animation and text fields after calculations */
@@ -179,6 +186,6 @@ public class GUI extends JPanel
       errorPane.showMessageDialog(error, "Error: Vertical displacement must be greater than or equal to zero, since impact vertical velocity is zero.");
     
     else if (errorCode == 9)
-      errorPane.showMessageDialog(error, "Error: Invalid input(s).");
+      errorPane.showMessageDialog(error, "Error: Insufficient/invalid information.");
   }
 }
