@@ -1,5 +1,3 @@
-//numberformatexception at line 125 if velocity1 is set to invalid before velocity2 is validated
-
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -70,225 +68,13 @@ public class CalculateController implements ActionListener
     //Else, calculates the empty text fields
     else
     {
-      //Set time
-      if (!time.getText().equals(""))
-      {
-        if (validate(time))
-        {
-          if (Double.parseDouble(time.getText()) > 0)
-          {
-            model.setTime(Double.parseDouble(time.getText()));
-            timeB = true;
-          }
-          
-          else
-          {
-            timeB = false;
-            view.time.setText("Invalid");
-            this.view.errorMessage(4);
-            errorMessage = true;
-          }
-        }
-      }
-      else
-        timeB = false;
-      
-      //Set velocity 1
-      if (!velocity1.getText().equals(""))
-      {
-        if (validate(velocity1))
-        {
-          if (Double.parseDouble(velocity1.getText()) > 0)
-          {
-            model.setVelocity1(Double.parseDouble(velocity1.getText()));
-            velocity1B = true;
-          }
-          
-          else
-          {
-            velocity1B = false;
-            view.velocity1.setText("Invalid");
-            this.view.errorMessage(5);
-            errorMessage = true;
-          }
-        }
-      }
-      else
-        velocity1B = false;
-      
-      //Set velocity 2
-      if (!velocity2.getText().equals(""))
-      {
-        if (validate(velocity2))
-        {
-          //if velocity1 exists, and is less than or equal to v2, then sets v2
-          if (velocity1B && Double.parseDouble(velocity2.getText()) >= Double.parseDouble(velocity1.getText()))
-          {
-            model.setVelocity2(Double.parseDouble(velocity2.getText()));
-            velocity2B = true;
-          }
-          
-          else if (!velocity1B)
-          {
-            model.setVelocity2(Double.parseDouble(velocity2.getText()));
-            velocity2B = true;
-          }
-          
-          else
-          {
-            velocity2B = false;
-            view.velocity2.setText("Invalid");
-            this.view.errorMessage(6);
-            errorMessage = true;
-          }
-        }
-      }
-      else
-        velocity2B = false;
-      
-      //Set angle 1
-      if (!angle1.getText().equals(""))
-      {
-        if (validate(angle1))
-        {
-          if (Double.parseDouble(angle1.getText()) <= 90 && Double.parseDouble(angle1.getText()) >= 0)
-          {
-            angle1B = true;
-            model.setAngle1(Double.parseDouble(angle1.getText()));
-          }
-          
-          else
-          {
-            angle1B = false;
-            view.angle1.setText("Invalid");
-            this.view.errorMessage(3);
-            errorMessage = true;
-          }
-        }
-      }
-      else
-        angle1B = false;
-      
-      //Set angle 2
-      if (!angle2.getText().equals(""))
-      {
-        if (validate(angle2))
-        {
-          model.setAngle2(Double.parseDouble(angle2.getText()));
-          angle2B = true;
-        }
-        
-        else
-        {
-          angle2B = false;
-          view.angle2.setText("Invalid");
-        }
-      }
-      else
-        angle2B = false;
-      
-      //Set displacementX
-      if (!displacementX.getText().equals(""))
-      {
-        if (validate(displacementX))
-        {
-          if (Double.parseDouble(displacementX.getText()) > 0)
-          {
-            displacementXB = true;
-            model.setDisplacementX(Double.parseDouble(displacementX.getText()));
-          }
-          
-          else
-          {
-            displacementXB = false;
-            view.displacementX.setText("Invalid");
-            this.view.errorMessage(2);
-            errorMessage = true;
-          }
-        }
-      }
-      else
-        displacementXB = false;
-      
-      //Set displacementY
-      if (!displacementY.getText().equals(""))
-      {
-        if (validate(displacementY))
-        {
-          //Checking values exist before checking them
-          if (angle1B && velocity1B)
-          {
-            //displacementY must be -ve if velocity1Y is negative
-            if (Double.parseDouble(velocity1.getText()) * Math.sin(Math.toRadians(Double.parseDouble(angle1.getText()))) <= 0)
-            {
-              if (Double.parseDouble(displacementY.getText()) <= 0)
-              {
-                model.setDisplacementY(Double.parseDouble(displacementY.getText()));
-                displacementYB = true;
-              }
-              
-              else
-              {
-                displacementYB = false;
-                view.displacementY.setText("Invalid");
-                this.view.errorMessage(7);
-                errorMessage = true;
-              }
-            }
-            
-            //if velocity1Y is not equal to or less than 0, displacementY can be any value
-            else
-            {
-              model.setDisplacementY(Double.parseDouble(displacementY.getText()));
-              displacementYB = true;
-            }
-          }
-          
-          //checking if angle1 and velocity2 exist
-          else if (angle2B && velocity2B)
-          {
-            if (Double.parseDouble(velocity2.getText()) * Math.sin(Math.toRadians(Double.parseDouble(angle2.getText()))) == 0)
-            {
-              //if velocity2 is 0, displacementY must be >= 0
-              if (Double.parseDouble(displacementY.getText()) >= 0)
-              {
-                model.setDisplacementY(Double.parseDouble(displacementY.getText()));
-                displacementYB = true;
-              }
-              
-              else
-              {
-                displacementYB = false;
-                view.displacementY.setText("Invalid");
-                this.view.errorMessage(8);
-                errorMessage = true;
-              }
-            }
-            
-            //if velocity2Y is not equal to zero, displacementY can be any value
-            else
-            {
-              model.setDisplacementY(Double.parseDouble(displacementY.getText()));
-              displacementYB = true;
-            }
-          }
-          
-          //if angle1 and velocity1, and angle2 and velocity2 do not exist, sets displacementY
-          else
-          {
-            model.setDisplacementY(Double.parseDouble(displacementY.getText()));
-            displacementYB = true;
-          }
-        }
-        
-        else
-        {
-          displacementYB = false;
-          view.displacementY.setText("Invalid");
-        }
-      }
-      else
-        displacementYB = false;
+      setTime();
+      setVelocity1();
+      setVelocity2();
+      setAngle1();
+      setAngle2();
+      setDisplacementX();
+      setDisplacementY();
       
       //Checking how many inputs were given and valid
       int inputGiven = 0;
@@ -338,7 +124,7 @@ public class CalculateController implements ActionListener
     }
   }
   
-  /* Data validation for textField inputs */
+  /** Validating if the inputs are actually numbers */
   private boolean validate(JTextField input)
   {
     try{
@@ -346,8 +132,267 @@ public class CalculateController implements ActionListener
       return true;
     } catch (NumberFormatException e)
     {
-      
       return false;
     }
+  }
+  
+  /** Sets the time and ensures it is a positive value */
+  private void setTime()
+  {
+    //Set time
+    if (!time.getText().equals(""))
+    {
+      if (validate(time))
+      {
+        //time must be a positive value greater than 0
+        if (Double.parseDouble(time.getText()) > 0)
+        {
+          model.setTime(Double.parseDouble(time.getText()));
+          timeB = true;
+        }
+        
+        else
+        {
+          timeB = false;
+          view.time.setText("Invalid");
+          this.view.errorMessage(4);
+          errorMessage = true;
+        }
+      }
+    }
+    
+    else
+      timeB = false;
+  }
+  
+  /** Sets the initial velocity and ensures it is a positive value */
+  private void setVelocity1()
+  {
+    //Set velocity 1
+    if (!velocity1.getText().equals(""))
+    {
+      if (validate(velocity1))
+      {
+        //initial velocity must be a positive value
+        if (Double.parseDouble(velocity1.getText()) > 0)
+        {
+          model.setVelocity1(Double.parseDouble(velocity1.getText()));
+          velocity1B = true;
+        }
+        
+        else
+        {
+          velocity1B = false;
+          view.velocity1.setText("Invalid");
+          this.view.errorMessage(5);
+          errorMessage = true;
+        }
+      }
+    }
+    
+    else
+      velocity1B = false;
+  }
+  
+  /** Sets the impact velocity and ensures v2 >= v1 */
+  private void setVelocity2()
+  {
+    //Set velocity 2
+    if (!velocity2.getText().equals(""))
+    {
+      if (validate(velocity2))
+      {
+        //if velocity1 exists, and is less than or equal to v2, then sets v2
+        if (velocity1B && Double.parseDouble(velocity2.getText()) >= Double.parseDouble(velocity1.getText()))
+        {
+          model.setVelocity2(Double.parseDouble(velocity2.getText()));
+          velocity2B = true;
+        }
+        
+        //if velocity1 does not exist, then any velocity2 input is valid
+        else if (!velocity1B)
+        {
+          model.setVelocity2(Double.parseDouble(velocity2.getText()));
+          velocity2B = true;
+        }
+        
+        else
+        {
+          velocity2B = false;
+          view.velocity2.setText("Invalid");
+          this.view.errorMessage(6);
+          errorMessage = true;
+        }
+      }
+    }
+    
+    else
+      velocity2B = false;
+  }
+  
+  /** Sets the initial angle and ensures it is between 0 and 90 */
+  private void setAngle1()
+  {
+    //Set angle 1
+    if (!angle1.getText().equals(""))
+    {
+      if (validate(angle1))
+      {
+        //ensures initial angle is between 0 and 90
+        if (Double.parseDouble(angle1.getText()) <= 90 && Double.parseDouble(angle1.getText()) >= 0)
+        {
+          angle1B = true;
+          model.setAngle1(Double.parseDouble(angle1.getText()));
+        }
+        
+        else
+        {
+          angle1B = false;
+          view.angle1.setText("Invalid");
+          this.view.errorMessage(3);
+          errorMessage = true;
+        }
+      }
+    }
+    
+    else
+      angle1B = false;
+  }
+  
+  /** Sets the impact angle */
+  private void setAngle2()
+  {
+    //Set angle 2
+    if (!angle2.getText().equals(""))
+    {
+      if (validate(angle2))
+      {
+        model.setAngle2(Double.parseDouble(angle2.getText()));
+        angle2B = true;
+      }
+      
+      else
+      {
+        angle2B = false;
+        view.angle2.setText("Invalid");
+      }
+    }
+    
+    else
+      angle2B = false;
+  }
+  
+  /** Sets the horizontal displacement, and ensures it is a positive value > 0 */
+  private void setDisplacementX()
+  {
+    //Set displacementX
+    if (!displacementX.getText().equals(""))
+    {
+      if (validate(displacementX))
+      {
+        //displacementX must be greater than 0 to be valid
+        if (Double.parseDouble(displacementX.getText()) > 0)
+        {
+          displacementXB = true;
+          model.setDisplacementX(Double.parseDouble(displacementX.getText()));
+        }
+        
+        else
+        {
+          displacementXB = false;
+          view.displacementX.setText("Invalid");
+          this.view.errorMessage(2);
+          errorMessage = true;
+        }
+      }
+    }
+    
+    else
+      displacementXB = false;
+  }
+  
+  /** Sets the vertical displacement */
+  private void setDisplacementY()
+  {
+    //Set displacementY
+    if (!displacementY.getText().equals(""))
+    {
+      if (validate(displacementY))
+      {
+        //Checking values exist before checking them
+        if (angle1B && velocity1B)
+        {
+          //displacementY must be -ve if velocity1Y is negative
+          if (Double.parseDouble(velocity1.getText()) * Math.sin(Math.toRadians(Double.parseDouble(angle1.getText()))) <= 0)
+          {
+            if (Double.parseDouble(displacementY.getText()) <= 0)
+            {
+              model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+              displacementYB = true;
+            }
+            
+            else
+            {
+              displacementYB = false;
+              view.displacementY.setText("Invalid");
+              this.view.errorMessage(7);
+              errorMessage = true;
+            }
+          }
+          
+          //if velocity1Y is not equal to or less than 0, displacementY can be any value
+          else
+          {
+            model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+            displacementYB = true;
+          }
+        }
+        
+        //checking if angle1 and velocity2 exist
+        else if (angle2B && velocity2B)
+        {
+          if (Double.parseDouble(velocity2.getText()) * Math.sin(Math.toRadians(Double.parseDouble(angle2.getText()))) == 0)
+          {
+            //if velocity2 is 0, displacementY must be >= 0
+            if (Double.parseDouble(displacementY.getText()) >= 0)
+            {
+              model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+              displacementYB = true;
+            }
+            
+            else
+            {
+              displacementYB = false;
+              view.displacementY.setText("Invalid");
+              this.view.errorMessage(8);
+              errorMessage = true;
+            }
+          }
+          
+          //if velocity2Y is not equal to zero, displacementY can be any value
+          else
+          {
+            model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+            displacementYB = true;
+          }
+        }
+        
+        //if angle1 and velocity1, and angle2 and velocity2 do not exist, sets displacementY
+        else
+        {
+          model.setDisplacementY(Double.parseDouble(displacementY.getText()));
+          displacementYB = true;
+        }
+      }
+      
+      else
+      {
+        displacementYB = false;
+        view.displacementY.setText("Invalid");
+      }
+    }
+    
+    else
+      displacementYB = false;
   }
 }
