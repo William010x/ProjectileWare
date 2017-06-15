@@ -275,15 +275,8 @@ public void calculate()
 /** Calculates the time */
 public void calcTime()
 {
-  //Calculate time from x direction
-  if (velocityXB && displacementXB)
-  {
-    time = displacementX/velocity1X;
-  }
-  
-  
   //Calculate time from y direction
-  else if (velocity1YB && velocity2YB)
+  if (velocity1YB && velocity2YB)
   {
     time = (velocity2Y-velocity1Y)/-9.8;
   }
@@ -327,6 +320,12 @@ public void calcTime()
         time = (-velocity2Y+Math.sqrt((Math.pow(velocity2Y,2))-(4*(9.8/2)*displacementY)))/9.8;
       }
     }
+  }
+  
+  //Calculate time from x direction
+  else if (velocityXB && displacementXB)
+  {
+    time = displacementX/velocity1X;
   }
   
   timeB = true;
