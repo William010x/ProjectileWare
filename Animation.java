@@ -43,7 +43,7 @@ private Calculation model;
     * @param       the current time at object's position */
   public void moveHorizontal(double time)
   {
-    this.positionY = (int)((this.model.getVelocity1() * Math.sin(Math.toRadians(this.model.getAngle1())) * time) + (0.5 * -9.81 * Math.pow(time, 2)));
+    this.positionY = (int)Math.round(((this.model.getVelocity1() * Math.sin(Math.toRadians(this.model.getAngle1())) * time) + (0.5 * -9.81 * Math.pow(time, 2))));
     this.paintImmediately(0, 0, 500, 500);
   }
   
@@ -51,7 +51,7 @@ private Calculation model;
     * @param       the current time at object's position */
   public void moveVertical(double time)
   {
-    this.positionX = (int)(this.model.getVelocity1() * Math.cos(Math.toRadians(this.model.getAngle1())) * time);
+    this.positionX = (int)Math.round((this.model.getVelocity1() * Math.cos(Math.toRadians(this.model.getAngle1())) * time));
     this.paintImmediately(0, 0, 500, 500);
   }
   
