@@ -5,7 +5,7 @@ import java.awt.event.*;
  * CalculateController Class
  * The controller for calculating all values (initial and final situation)
  * @author Nicolas Chatziargiriou, William San, Tu Tran
- * @since 6/5/17
+ * @since 6/15/17
  */ 
 public class CalculateController implements ActionListener
 {
@@ -116,6 +116,9 @@ public class CalculateController implements ActionListener
             model.calculate();
             view.update();
           }
+          
+          else
+            this.view.errorMessage(9);
         }
         
         else
