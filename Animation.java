@@ -1,16 +1,10 @@
-/** To do:
- * Scale drawing in event that it goes beyond borders
- * 
- * Possibly:
- * draw arc showing complete path of projectile
- */
-
 import java.awt.*;
 import javax.swing.*;
 
 /** Animation
-  * @author Tu Tran
-  * @since 6/5/2017 */
+  * Displays a ball that moves according to values calculated
+  * @author Nicolas Chatziargiriou, William San, Tu Tran
+  * @since 6/16/17 */ 
 public class Animation extends JComponent
 {
 private Calculation model;
