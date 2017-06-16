@@ -20,8 +20,8 @@
 
 /** Calculation class
   * Model that performs calculations
-  * @since 6/05/2017
-  * @author William San */
+  * @author Nicolas Chatziargiriou, William San, Tu Tran
+  * @since 6/16/17 */ 
 public class Calculation extends Object
 {
   private GUI view;               //The view for the simulation
