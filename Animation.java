@@ -57,6 +57,8 @@ private Calculation model;
   /** Clears the animation screen */
   public void reset()
   {
-    this.repaint();
+    this.positionX = 0;
+    this.positionY = 0;
+    this.paintImmediately(0, 0, 600, 400);
   }
 }
