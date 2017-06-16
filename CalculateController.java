@@ -19,14 +19,14 @@ public class CalculateController implements ActionListener
   private JTextField displacementX;  //The horizontal displacement of the projectile (m)
   private JTextField displacementY;  //The vertical displacement of the projectile (m)
   
-  private boolean timeB = false;
-  private boolean velocity1B = false;
-  private boolean velocity2B = false;
-  private boolean angle1B = false;
-  private boolean angle2B = false;
-  private boolean displacementXB = false;
-  private boolean displacementYB = false;
-  private boolean errorMessage = false;   //if any error message is shown
+  private boolean timeB;
+  private boolean velocity1B;
+  private boolean velocity2B;
+  private boolean angle1B;
+  private boolean angle2B;
+  private boolean displacementXB;
+  private boolean displacementYB;
+  private boolean errorMessage;   //if any error message is shown
   
   /** 
    * Default constructor
@@ -59,6 +59,15 @@ public class CalculateController implements ActionListener
    */
   public void actionPerformed(ActionEvent e)
   {
+    //Setting booleans to false (values not given)
+    timeB = false;
+    velocity1B = false;
+    velocity2B = false;
+    angle1B = false;
+    angle2B = false;
+    displacementXB = false;
+    errorMessage = false;
+
     //Checks if button pressed was the "Start" button
     if (((JButton) e.getSource()).getText().equals("Start"))
     {
