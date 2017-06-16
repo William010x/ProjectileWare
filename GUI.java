@@ -87,12 +87,12 @@ public class GUI extends JPanel
     
     //Adding components
     input.add(velocity1);
-    input.add(velocity2);
     input.add(angle1);
-    input.add(angle2);
-    input.add(time);
     input.add(displacementX);
+    input.add(velocity2);
+    input.add(angle2);
     input.add(displacementY);
+    input.add(time);
     
     buttonPanel.add(start);
     buttonPanel.add(reset);
