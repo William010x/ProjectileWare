@@ -36,7 +36,6 @@ private Calculation model;
     
     g.setColor(Color.BLACK);
     g.fillOval(0 + positionX, 125 + positionY, 20, 20);
-    System.out.println("Test");
    }
   
   /** Calculates the object's new horizontal position
