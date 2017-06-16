@@ -94,24 +94,20 @@ public class CalculateController implements ActionListener
         //Checking how many X values were given
         int xGiven = 0;
         xGiven += timeB ? 1 : 0;
-        xGiven += velocity1B ? 1 : 0;
-        xGiven += velocity2B ? 1 : 0;
-        xGiven += angle1B ? 1 : 0;
-        xGiven += angle2B ? 1 : 0;
+        xGiven += (velocity1B && angle1B) ? 1 : 0;
+        xGiven += (velocity2B && angle2B) ? 1 : 0;
         xGiven += displacementXB ? 1 : 0;
         
         //Checking how many Y values were given
         int yGiven = 0;
         yGiven += timeB ? 1 : 0;
-        yGiven += velocity1B ? 1 : 0;
-        yGiven += velocity2B ? 1 : 0;
-        yGiven += angle1B ? 1 : 0;
-        yGiven += angle2B ? 1 : 0;
+        yGiven += (velocity1B && angle1B) ? 1 : 0;
+        yGiven += (velocity2B && angle2B) ? 1 : 0;
         yGiven += displacementYB ? 1 : 0;
         
         if (!errorMessage)
         {
-          if (xGiven > 2 || yGiven > 3)
+          if (xGiven >= 2 || yGiven >= 3)
           {
             model.calculate();
             view.update();
