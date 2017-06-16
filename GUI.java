@@ -2,8 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /** GUI Class
-  * @author Tu Tran
-  * @since 6/5/2017 */
+  * The GUI view for the projectile motion simulator
+  * @author Nicolas Chatziargiriou, William San, Tu Tran
+  * @since 6/16/17 */ 
 public class GUI extends JPanel
 {
   Calculation model;
@@ -26,8 +27,9 @@ public class GUI extends JPanel
   JPanel buttonPanel;         //panel containing the buttons
   public static boolean blank = true; // variable for setting textfields
   
-  /* Constructor
-   * @param aModel    The calculation model */
+  /** Constructor
+    * @param aModel The calculation model 
+    */
   public GUI(Calculation aModel)
   {
     super();
@@ -38,7 +40,7 @@ public class GUI extends JPanel
     this.update();
   }
   
-  /* Lays out the components on the JPanel */
+  /** Lays out the components on the JPanel */
   private void layoutView()
   {
     //Initializing components
@@ -106,7 +108,7 @@ public class GUI extends JPanel
     this.add(screen, BorderLayout.NORTH);
   }
   
-  /* Registers the controllers for text fields and buttons */
+  /** Registers the controllers for text fields and buttons */
   private void registerControllers()
   {
     CalculateController controller1 = new CalculateController(this.model, this, this.time, this.velocity1, this.velocity2, this.angle1, this.angle2, this.displacementX, this.displacementY);
@@ -117,7 +119,7 @@ public class GUI extends JPanel
     this.reset.addActionListener(controller2);
   }
   
-  /* Runs the animation of the problem */
+  /** Runs the animation of the problem */
   public void runAnimation()
   {
     //Moves object in 0.1 sec increments until the maximum time value is reached
@@ -131,7 +133,7 @@ public class GUI extends JPanel
     }
   }
   
-  /* Updates the animation and text fields after calculations */
+  /** Updates the animation and text fields after calculations */
   public void update()
   {
     if (blank)
@@ -161,7 +163,9 @@ public class GUI extends JPanel
     }
   }
   
-  /** Shows an error message if user inputs something invalid */
+  /** Shows an error message if user inputs something invalid 
+    * @param errorCode Determines which error occurred
+    */
   public static void errorMessage(int errorCode)
   {
     if (errorCode == 1)
