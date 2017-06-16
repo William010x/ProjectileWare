@@ -143,6 +143,7 @@ public class GUI extends JPanel
       this.time.setText("");
       this.angle1.setText("");
       this.angle2.setText("");
+      this.screen.reset();
       blank = false;
     }
     
