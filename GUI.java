@@ -145,6 +145,7 @@ public class GUI extends JPanel
       this.angle2.setText("");
       this.screen.reset();
       blank = false;
+      this.calculate.setEnabled(true);
     }
     
     else
@@ -156,6 +157,7 @@ public class GUI extends JPanel
       this.time.setText(Double.toString(this.model.getTime()));
       this.angle1.setText(Double.toString(this.model.getAngle1()));
       this.angle2.setText(Double.toString(this.model.getAngle2()));
+      this.calculate.setEnabled(false);
     }
   }
   
