@@ -2,10 +2,10 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /** 
- * CalculateController Class
- * The controller for calculating all values (initial and final situation)
- * @author Nicolas Chatziargiriou, William San, Tu Tran
- * @since 6/16/17 */ 
+  * CalculateController Class
+  * The controller for calculating all values (initial and final situation)
+  * @author Nicolas Chatziargiriou, William San, Tu Tran
+  * @since 6/16/17 */ 
 public class CalculateController implements ActionListener
 {
   private Calculation model;         //The Model used for numbers and calculations
