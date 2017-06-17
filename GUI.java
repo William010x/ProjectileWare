@@ -44,7 +44,7 @@ public class GUI extends JPanel
   private void layoutView()
   {
     //Initializing components
-    JLabel blank = new JLabel();
+    JLabel space = new JLabel();
     
     screen = new Animation(model);
     velocity1 = new JTextField(10);
@@ -85,7 +85,7 @@ public class GUI extends JPanel
     //Setting sizes
     start.setPreferredSize(new Dimension(100, 25));
     calculate.setPreferredSize(new Dimension(100, 25));
-    blank.setPreferredSize(new Dimension(100, 25));
+    space.setPreferredSize(new Dimension(100, 25));
     
     //Adding components
     input.add(velocity1);
@@ -103,7 +103,7 @@ public class GUI extends JPanel
     error.add(errorPane);
     
     this.add(input, BorderLayout.WEST);
-    this.add(blank, BorderLayout.CENTER);
+    this.add(space, BorderLayout.CENTER);
     this.add(buttonPanel, BorderLayout.EAST);
     this.add(screen, BorderLayout.NORTH);
   }
@@ -128,8 +128,6 @@ public class GUI extends JPanel
       screen.moveHorizontal(t);
       screen.moveVertical(t);
       this.update();
-      
-      System.out.println(t);
     }
   }
   
@@ -147,6 +145,7 @@ public class GUI extends JPanel
       this.angle2.setText("");
       this.screen.reset();
       blank = false;
+      this.start.setEnabled(false);
       this.calculate.setEnabled(true);
     }
     
@@ -160,6 +159,7 @@ public class GUI extends JPanel
       this.angle1.setText(Double.toString(this.model.getAngle1()));
       this.angle2.setText(Double.toString(this.model.getAngle2()));
       this.calculate.setEnabled(false);
+      this.start.setEnabled(true);
     }
   }
   
