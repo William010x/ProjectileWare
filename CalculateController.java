@@ -2,10 +2,10 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /** 
-  * CalculateController Class
-  * The controller for calculating all values (initial and final situation)
-  * @author Nicolas Chatziargiriou, William San, Tu Tran
-  * @since 6/16/17 */ 
+ * CalculateController Class
+ * The controller for calculating all values (initial and final situation)
+ * @author Nicolas Chatziargiriou, William San, Tu Tran
+ * @since 6/16/17 */ 
 public class CalculateController implements ActionListener
 {
   private Calculation model;         //The Model used for numbers and calculations
@@ -18,6 +18,7 @@ public class CalculateController implements ActionListener
   private JTextField displacementX;  //The horizontal displacement of the projectile (m)
   private JTextField displacementY;  //The vertical displacement of the projectile (m)
   
+  private boolean discCheck= false; 
   private boolean timeB;
   private boolean velocity1B;
   private boolean velocity2B;
@@ -66,7 +67,7 @@ public class CalculateController implements ActionListener
     angle2B = false;
     displacementXB = false;
     errorMessage = false;
-
+    
     //Checks if button pressed was the "Start" button
     if (((JButton) e.getSource()).getText().equals("Start"))
     {
@@ -114,10 +115,23 @@ public class CalculateController implements ActionListener
         
         if (!errorMessage)
         {
-          if (xGiven >= 2 || yGiven >= 2)
+          if (velocity1B && displacementYB)
           {
-            model.calculate();
-            view.update();
+            discCheck = discriminant(-9.8/2, this.model.getVelocity1Y(), -this.model.getDisplacementY());
+          }
+          else if (velocity2B && displacementYB)
+          {
+            discCheck = discriminant(-9.8/2, this.model.getVelocity2Y(), -this.model.getDisplacementY());
+          }
+          
+          if (!discCheck)
+          {
+            discCheck = true;
+            if (xGiven >= 2 || yGiven >= 2)
+            {
+              model.calculate();
+              view.update();
+            }
           }
           
           else
@@ -400,5 +414,21 @@ public class CalculateController implements ActionListener
     
     else
       displacementYB = false;
+  }
+  
+  /** Checks if there will there will be a math error
+     * @param a The a value of the quadratic formula
+     * @param b The b value of the quadratic formula
+     * @param c The c value of the quadratic formula
+     */ 
+  private boolean discriminant(double a, double b, double c)
+  {
+    if (Math.pow(b,2)-(4*(a)*(c)) < 0)
+    {
+      view.errorMessage(10);
+      return(true);
+    }
+    else 
+      return (false);
   }
 }

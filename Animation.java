@@ -27,7 +27,7 @@ private Calculation model;
   {
     super.paintComponent(g);
     
-    g.setColor(Color.BLACK);
+    g.setColor(Color.BLUE);
     g.fillOval(0 + positionX, 125 + positionY, 20, 20);
    }
   
@@ -35,8 +35,8 @@ private Calculation model;
     * @param The current time at object's position */
   public void moveVertical(double time)
   {
-    this.positionY = (int)Math.round(-((this.model.getVelocity1() * Math.sin(Math.toRadians(this.model.getAngle1())) * time) + (0.5 * -9.81 * Math.pow(time, 2))));
-    this.paintImmediately(0, 0, 600, 400);
+    this.positionY = (int)Math.round(-((this.model.getVelocity1() * Math.sin(Math.toRadians(this.model.getAngle1())) * time) + (0.5 * -9.8 * Math.pow(time, 2))));
+    this.paintImmediately(0, 0, 700, 400);
   }
   
   /** Calculates the object's new vertical position
@@ -44,7 +44,7 @@ private Calculation model;
   public void moveHorizontal(double time)
   {
     this.positionX = (int)Math.round((this.model.getVelocity1() * Math.cos(Math.toRadians(this.model.getAngle1())) * time));
-    this.paintImmediately(0, 0, 600, 400);
+    this.paintImmediately(0, 0, 700, 400);
   }
   
   /** Clears the animation screen */
@@ -52,6 +52,6 @@ private Calculation model;
   {
     this.positionX = 0;
     this.positionY = 0;
-    this.paintImmediately(0, 0, 600, 400);
+    this.paintImmediately(0, 0, 700, 400);
   }
 }

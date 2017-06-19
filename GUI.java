@@ -15,6 +15,7 @@ public class GUI extends JPanel
   JTextField angle1;          //display/entry for initial angle
   JTextField angle2;          //display/entry for impact angle
   JTextField time;            //display/entry for time
+  JTextField time2;            //display/entry for time2
   JTextField displacementX;   //display/entry for final horizontal displacement
   JTextField displacementY;   //display/entry for final vertical displacement
   
@@ -47,13 +48,15 @@ public class GUI extends JPanel
     JLabel space = new JLabel();
     
     screen = new Animation(model);
-    velocity1 = new JTextField(10);
-    velocity2 = new JTextField(10);
-    angle1 = new JTextField(10);
-    angle2 = new JTextField(10);
-    time = new JTextField(10);
-    displacementX = new JTextField(10);
-    displacementY = new JTextField(10);
+    velocity1 = new JTextField(13);
+    velocity2 = new JTextField(13);
+    angle1 = new JTextField(13);
+    angle2 = new JTextField(13);
+    time = new JTextField(13);
+    time2 = new JTextField(13);
+    displacementX = new JTextField(13);
+    displacementY = new JTextField(13);
+    time2.setEnabled(false);
     
     start = new JButton("Start");
     calculate = new JButton("Calculate");
@@ -71,13 +74,14 @@ public class GUI extends JPanel
     buttonPanel.setLayout(layout3);
     
     //Setting borders
-    velocity1.setBorder(BorderFactory.createTitledBorder("Initial Velocity"));
-    velocity2.setBorder(BorderFactory.createTitledBorder("Impact Velocity"));
-    angle1.setBorder(BorderFactory.createTitledBorder("Initial Angle"));
-    angle2.setBorder(BorderFactory.createTitledBorder("Impact Angle"));
-    time.setBorder(BorderFactory.createTitledBorder("Time"));
-    displacementX.setBorder(BorderFactory.createTitledBorder("Displacement X"));
-    displacementY.setBorder(BorderFactory.createTitledBorder("Displacement Y"));
+    velocity1.setBorder(BorderFactory.createTitledBorder("Initial Velocity (m/s)"));
+    velocity2.setBorder(BorderFactory.createTitledBorder("Impact Velocity (m/s)"));
+    angle1.setBorder(BorderFactory.createTitledBorder("Initial Angle (degrees)"));
+    angle2.setBorder(BorderFactory.createTitledBorder("Impact Angle (degrees)"));
+    time.setBorder(BorderFactory.createTitledBorder("Time (s)"));
+    time2.setBorder(BorderFactory.createTitledBorder("Time 2 (s)"));
+    displacementX.setBorder(BorderFactory.createTitledBorder("Displacement X (m)"));
+    displacementY.setBorder(BorderFactory.createTitledBorder("Displacement Y (m)"));
     
     input.setBorder(BorderFactory.createEtchedBorder());
     buttonPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -95,6 +99,7 @@ public class GUI extends JPanel
     input.add(angle2);
     input.add(displacementY);
     input.add(time);
+    input.add(time2);
     
     buttonPanel.add(start);
     buttonPanel.add(reset);
@@ -141,6 +146,7 @@ public class GUI extends JPanel
       this.displacementX.setText("");
       this.displacementY.setText("");
       this.time.setText("");
+      this.time2.setText("");
       this.angle1.setText("");
       this.angle2.setText("");
       this.screen.reset();
@@ -156,6 +162,10 @@ public class GUI extends JPanel
       this.displacementX.setText(Double.toString(this.model.getDisplacementX()));
       this.displacementY.setText(Double.toString(this.model.getDisplacementY()));
       this.time.setText(Double.toString(this.model.getTime()));
+      if (this.model.getTime2() != 0)
+      {
+        this.time2.setText(Double.toString(this.model.getTime2()));
+      }
       this.angle1.setText(Double.toString(this.model.getAngle1()));
       this.angle2.setText(Double.toString(this.model.getAngle2()));
       this.calculate.setEnabled(false);
@@ -194,5 +204,8 @@ public class GUI extends JPanel
     
     else if (errorCode == 9)
       errorPane.showMessageDialog(error, "Error: Insufficient/invalid information.");
+    
+    else if (errorCode == 10)
+      errorPane.showMessageDialog(error, "Error: Math error.");
   }
 }

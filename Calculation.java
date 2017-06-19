@@ -78,6 +78,12 @@ public double getTime()
 {
   return (Math.round(this.time*100)/100.0);
 }
+/** Get the time2
+  * @return Time2 of projectile motion */
+public double getTime2()
+{
+  return (Math.round(this.time2*100)/100.0);
+}
 
 /** Get the initial velocity
   * @return The inital speed of the projectile (meters/seconds) */
